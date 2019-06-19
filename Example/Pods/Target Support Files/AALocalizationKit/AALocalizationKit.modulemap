@@ -1,0 +1,6 @@
+framework module AALocalizationKit {
+  umbrella header "AALocalizationKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

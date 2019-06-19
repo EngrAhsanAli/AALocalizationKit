@@ -1,0 +1,22 @@
+{
+  "name": "AALocalizationKit",
+  "version": "0.1.0",
+  "summary": "A short description of AALocalizationKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/EngrAhsanAli/AALocalizationKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "EngrAhsanAli": "hafiz.m.ahsan.ali@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/EngrAhsanAli/AALocalizationKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AALocalizationKit/Classes/**/*"
+}

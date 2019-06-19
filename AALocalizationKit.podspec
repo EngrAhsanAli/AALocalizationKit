@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'AALocalizationKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of AALocalizationKit.'
+  s.summary          = 'AALocalizationKit is a lanaguage manager written in Swift 5.0'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
