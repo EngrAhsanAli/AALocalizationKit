@@ -24,6 +24,16 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Flaticon.ttf</string>
+		<string>MavenPro-Regular.ttf</string>
+		<string>MavenPro-Medium.ttf</string>
+		<string>MavenPro-Bold.ttf</string>
+		<string>DubaiW23-Regular.ttf</string>
+		<string>DubaiW23-Medium.ttf</string>
+		<string>DubaiW23-Bold.ttf</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

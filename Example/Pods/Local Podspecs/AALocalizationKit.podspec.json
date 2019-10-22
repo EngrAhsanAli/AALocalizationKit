@@ -1,8 +1,8 @@
 {
   "name": "AALocalizationKit",
   "version": "0.1.0",
-  "summary": "A short description of AALocalizationKit.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "AALocalizationKit is a lanaguage manager written in Swift 5.0",
+  "description": "AALocalizationKit is a localized language manager for iOS, written in Swift",
   "homepage": "https://github.com/EngrAhsanAli/AALocalizationKit",
   "license": {
     "type": "MIT",
@@ -16,7 +16,7 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "AALocalizationKit/Classes/**/*"
 }

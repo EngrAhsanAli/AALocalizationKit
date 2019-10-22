@@ -15,6 +15,12 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		6ABE1937507CDF3E569FD85E /* Pods_AALocalizationKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DBF15E3C87A818B1C0D9C06 /* Pods_AALocalizationKit_Tests.framework */; };
 		702E0C7EB1E05D68D25C7F8C /* Pods_AALocalizationKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79163811543E7FE6B6B28D94 /* Pods_AALocalizationKit_Example.framework */; };
+		8FB0E2D8235F465000BBE0B3 /* MavenPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB0E2D0235F465000BBE0B3 /* MavenPro-Regular.ttf */; };
+		8FB0E2D9235F465000BBE0B3 /* MavenPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB0E2D1235F465000BBE0B3 /* MavenPro-Medium.ttf */; };
+		8FB0E2DA235F465000BBE0B3 /* MavenPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB0E2D2235F465000BBE0B3 /* MavenPro-Bold.ttf */; };
+		8FB0E2DB235F465000BBE0B3 /* DubaiW23-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB0E2D4235F465000BBE0B3 /* DubaiW23-Regular.ttf */; };
+		8FB0E2DC235F465000BBE0B3 /* DubaiW23-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB0E2D5235F465000BBE0B3 /* DubaiW23-Bold.ttf */; };
+		8FB0E2DD235F465000BBE0B3 /* DubaiW23-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FB0E2D6235F465000BBE0B3 /* DubaiW23-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,14 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		79163811543E7FE6B6B28D94 /* Pods_AALocalizationKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AALocalizationKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E146012D3AD58C9401A1F64 /* AALocalizationKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = AALocalizationKit.podspec; path = ../AALocalizationKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		8FB0E2C9235F44AC00BBE0B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		8FB0E2CA235F44AC00BBE0B3 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		8FB0E2D0235F465000BBE0B3 /* MavenPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Regular.ttf"; sourceTree = "<group>"; };
+		8FB0E2D1235F465000BBE0B3 /* MavenPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Medium.ttf"; sourceTree = "<group>"; };
+		8FB0E2D2235F465000BBE0B3 /* MavenPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Bold.ttf"; sourceTree = "<group>"; };
+		8FB0E2D4235F465000BBE0B3 /* DubaiW23-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DubaiW23-Regular.ttf"; sourceTree = "<group>"; };
+		8FB0E2D5235F465000BBE0B3 /* DubaiW23-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DubaiW23-Bold.ttf"; sourceTree = "<group>"; };
+		8FB0E2D6235F465000BBE0B3 /* DubaiW23-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DubaiW23-Medium.ttf"; sourceTree = "<group>"; };
 		A9794807A18BED66537EBB00 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		B953EC674BFE9ECC523CA95D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F233C2738A93DBCFAF81D85F /* Pods-AALocalizationKit_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AALocalizationKit_Tests.debug.xcconfig"; path = "Target Support Files/Pods-AALocalizationKit_Tests/Pods-AALocalizationKit_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +122,7 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
+				8FB0E2CB235F465000BBE0B3 /* Resources */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
@@ -148,6 +163,43 @@
 				A9794807A18BED66537EBB00 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		8FB0E2CB235F465000BBE0B3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8FB0E2CC235F465000BBE0B3 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8FB0E2CC235F465000BBE0B3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8FB0E2CF235F465000BBE0B3 /* MavenPro */,
+				8FB0E2D3235F465000BBE0B3 /* DubaiW23 */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8FB0E2CF235F465000BBE0B3 /* MavenPro */ = {
+			isa = PBXGroup;
+			children = (
+				8FB0E2D0235F465000BBE0B3 /* MavenPro-Regular.ttf */,
+				8FB0E2D1235F465000BBE0B3 /* MavenPro-Medium.ttf */,
+				8FB0E2D2235F465000BBE0B3 /* MavenPro-Bold.ttf */,
+			);
+			path = MavenPro;
+			sourceTree = "<group>";
+		};
+		8FB0E2D3235F465000BBE0B3 /* DubaiW23 */ = {
+			isa = PBXGroup;
+			children = (
+				8FB0E2D4235F465000BBE0B3 /* DubaiW23-Regular.ttf */,
+				8FB0E2D5235F465000BBE0B3 /* DubaiW23-Bold.ttf */,
+				8FB0E2D6235F465000BBE0B3 /* DubaiW23-Medium.ttf */,
+			);
+			path = DubaiW23;
 			sourceTree = "<group>";
 		};
 		98199E8DA3A4FDDBB061C132 /* Frameworks */ = {
@@ -229,6 +281,7 @@
 				English,
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
@@ -246,9 +299,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FB0E2DD235F465000BBE0B3 /* DubaiW23-Medium.ttf in Resources */,
+				8FB0E2DB235F465000BBE0B3 /* DubaiW23-Regular.ttf in Resources */,
+				8FB0E2DA235F465000BBE0B3 /* MavenPro-Bold.ttf in Resources */,
+				8FB0E2D8235F465000BBE0B3 /* MavenPro-Regular.ttf in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				8FB0E2DC235F465000BBE0B3 /* DubaiW23-Bold.ttf in Resources */,
+				8FB0E2D9235F465000BBE0B3 /* MavenPro-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +418,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				607FACDA1AFB9204008FA782 /* Base */,
+				8FB0E2C9235F44AC00BBE0B3 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -367,6 +427,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				607FACDF1AFB9204008FA782 /* Base */,
+				8FB0E2CA235F44AC00BBE0B3 /* ja */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
