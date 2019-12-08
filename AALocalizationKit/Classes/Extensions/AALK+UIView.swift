@@ -9,9 +9,9 @@ import Foundation
 
 @IBDesignable
 public extension UIView {
-    @IBInspectable var ViewDirection: Bool {
+    @IBInspectable var AAViewDirection: Bool {
         set {
-            if AALocalizationKit.shared.isRightToLeft { // CHANGE NOW
+            if AALK.isRightToLeft {
                 transform = CGAffineTransform(scaleX: -1, y: 1)
             }
         }
@@ -22,7 +22,7 @@ public extension UIView {
 }
 
 
-// MARK: - Swizzling
+// MARK: - Swizzling UIView for localization
 
 extension UIView {
     static func localize() {
@@ -44,46 +44,37 @@ extension UIView {
     }
     
     @objc func swizzledAwakeFromNib() {
+        let config = AALK.configuration
         switch self {
-        case let _view as UITextField:
-            if let font = _view.font?.languageFont {
-                _view.font = font
-            }
+        case let _view as UITextField where config.updateTextField:
+            _view.font = _view.font?.languageFont
             _view.textAlignment.setDirection()
-            _view.placeholder = _view.placeholder?.localiz()
-            _view.text = _view.text?.localiz()
-        case let _view as UILabel:
-            if let font = _view.font?.languageFont {
-                _view.font = font
-            }
+            _view.placeholder = _view.placeholder?.aa_localize()
+            _view.text = _view.text?.aa_localize()
+        case let _view as UILabel where config.updateLabel:
+            _view.font = _view.font?.languageFont
             _view.textAlignment.setDirection()
-            _view.text = _view.text?.localiz()
-        case let _view as UIButton:
+            _view.text = _view.text?.aa_localize()
+        case let _view as UIButton where config.updateButton:
             if let titleLabel = _view.titleLabel {
                 titleLabel.textAlignment.setDirection()
-                if let font = titleLabel.font?.languageFont {
-                    titleLabel.font = font
-                }
+                titleLabel.font = titleLabel.font?.languageFont
             }
             _view.setHorizontalAllignment()
-            _view.setTitle(_view.title(for: .normal)?.localiz(), for: .normal)
-        case let _view as UITextView:
-            if let font = _view.font?.languageFont {
-                _view.font = font
-            }
+            _view.setTitle(_view.title(for: .normal)?.aa_localize(), for: .normal)
+        case let _view as UITextView where config.updateTextView:
+            _view.font = _view.font?.languageFont
             _view.textAlignment.setDirection()
-            _view.text = _view.text?.localiz()
-        case let _view as UISegmentedControl:
-            (0 ..< _view.numberOfSegments).forEach { _view.setTitle(_view.titleForSegment(at: $0)?.localiz(), forSegmentAt: $0) }
-            
-            var defaultFont =  UIFont(name: AALocalizationKit.shared.deafultFontName, size: 15)!
-            if let font = defaultFont.languageFont {
-                defaultFont = font
-            }
-            _view.changeTitleFont(newFont: defaultFont)
+            _view.text = _view.text?.aa_localize()
+        case let _view as UISegmentedControl where config.updateSegmentedControl:
+            let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: AALK.configuration.sizeSegmentedControl).languageFont]
+            _view.setTitleTextAttributes(attrs, for: .normal)
+            _view.setTitleTextAttributes(attrs, for: .selected)
+           
         default:
             break
         }
+        AALK.localizedView?(self)
     }
     
 }

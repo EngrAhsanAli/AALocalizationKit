@@ -1,0 +1,21 @@
+
+/* Class = "UISegmentedControl"; K13-CK-xyJ.segmentTitles[0] = "Hello"; ObjectID = "K13-CK-xyJ"; */
+"K13-CK-xyJ.segmentTitles[0]" = "Bonjour à tous";
+
+/* Class = "UISegmentedControl"; K13-CK-xyJ.segmentTitles[1] = "Hi"; ObjectID = "K13-CK-xyJ"; */
+"K13-CK-xyJ.segmentTitles[1]" = "salut";
+
+/* Class = "UITextField"; placeholder = "Write you name here"; ObjectID = "byW-ld-KfO"; */
+"byW-ld-KfO.placeholder" = "Ecrivez votre nom ici";
+
+/* Class = "UIButton"; normalTitle = "What's your name?"; ObjectID = "cBj-5L-RKr"; */
+"cBj-5L-RKr.normalTitle" = "Quel est ton nom?";
+
+/* Class = "UINavigationItem"; title = "AALocalizationKit Demo"; ObjectID = "dFn-Ur-N39"; */
+"dFn-Ur-N39.title" = "AALocalizationKit Demo";
+
+/* Class = "UILabel"; text = "Greetings to you"; ObjectID = "tQh-SJ-TFH"; */
+"tQh-SJ-TFH.text" = "Salutations à vous";
+
+/* Class = "UITextField"; placeholder = "Select Language"; ObjectID = "wEK-2I-EPY"; */
+"wEK-2I-EPY.placeholder" = "Choisir la langue";

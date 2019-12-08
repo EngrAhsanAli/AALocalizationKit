@@ -7,10 +7,14 @@
 
 import Foundation
 
+// MARK: - NSTextAlignment extension
+
 extension NSTextAlignment {
+    
+    /// <#Description#>
     mutating func setDirection() {
         guard self == .left || self == .right else { return }
-        if AALocalizationKit.shared.isRightToLeft { // CHANGE NOW
+        if AALK.isRightToLeft {
             self = self == .left ? .right : .left
         }
     }

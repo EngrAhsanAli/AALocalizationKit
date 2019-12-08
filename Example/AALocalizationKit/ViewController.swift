@@ -11,60 +11,69 @@ import AALocalizationKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var langPicker: PickerView!
+    @IBOutlet weak var locallizedLabel: UILabel!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        AALocalizationKit.shared.customFonts = [.ar: "DubaiW23", .en: "MavenPro"]
-        AALocalizationKit.shared.setSystemDefault("MavenPro-Regular")
-        
+        setLanguagePicker()
+        localizedViewCallback()
+                
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setLanguagePicker() {
+        langPicker.setIcon()
+        langPicker.valueDidSelected = { self.updateAppLanguage($0 as! Int) }
+
+        let languageNames = AALK.availableLanguages.compactMap {
+            Locale.aalk_language(from: $0) }
+
+        if languageNames.count > 1 {
+            langPicker.pickerType = .string(data: languageNames)
+            langPicker.pickerRow.font = UIFont(name: AALK.configuration.defaultFont, size: 15)
+            langPicker.text = Locale.aalk_language(from: AALK.currentLanguage.rawValue)
+        }
+        
     }
     
-    func setAppearance() {
-        URLCache.shared = URLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil)
-        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "nav_bar"), for: .default)
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = .white
-        UINavigationBar.appearance().tintColor = .white
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white
-        ]
-        
-        UINavigationBar.appearance().frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 80)
-
-        UIToolbar.appearance().barTintColor = UIColor.black
-        UIToolbar.appearance().tintColor = .white
-        
-        UITabBarItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor:UIColor.black as Any
-            ], for: .selected)
-        
-        UITabBarItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.black as Any
-            ], for: .normal)
-        
-        
-        let font = AALocalizationKit.shared.getFont(type: .medium, size: 16)
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: font as Any, NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
-        
-        if #available(iOS 11.0, *) {
-            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UIDocumentBrowserViewController.self]).setTitleTextAttributes([
-                .foregroundColor : UIColor.black as Any
-                ], for: .normal)
+    func localizedViewCallback() {
+        AALK.localizedView = {
+            
+            if let v = ($0 as? UIButton), let font = v.titleLabel?.font {
+                print("Applied Font (UIButton): ", font)
+            }
+            
+            if let v = ($0 as? UILabel), let font =  v.font {
+                print("Applied Font (UILabel): ", font)
+            }
+            
+            if let v = ($0 as? UITextField), let font =  v.font {
+                print("Applied Font (UITextField): ", font)
+            }
+            
         }
     }
-
-    func checkLanguageAvailable() {
-        let localeArray = "ASD".components(separatedBy: ",")
-        let isAvailable = localeArray.contains(AALocalizationKit.shared.currentLanguage.rawValue)
-        guard !isAvailable else { return }
-        AALocalizationKit.shared.currentLanguage = Languages(rawValue: localeArray.first!)!
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    
+    func updateAppLanguage(_ index: Int) {
+        let langFromLangs = AALK.availableLanguages[index]
+        guard let lang = AALanguage(rawValue: langFromLangs), AALK.currentLanguage != lang else { return }
+        AALK.currentLanguage = lang
+        print("New Language: ", AALK.appLocale)
+        reloadViewFromNib()
+        
     }
     
 }
+
+
+
+
+
+
 

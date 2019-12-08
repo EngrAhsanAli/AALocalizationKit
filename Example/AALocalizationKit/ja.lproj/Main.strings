@@ -1,1 +1,21 @@
 
+/* Class = "UISegmentedControl"; K13-CK-xyJ.segmentTitles[0] = "Hello"; ObjectID = "K13-CK-xyJ"; */
+"K13-CK-xyJ.segmentTitles[0]" = "こんにちは";
+
+/* Class = "UISegmentedControl"; K13-CK-xyJ.segmentTitles[1] = "Hi"; ObjectID = "K13-CK-xyJ"; */
+"K13-CK-xyJ.segmentTitles[1]" = "こんにちは、あなた";
+
+/* Class = "UITextField"; placeholder = "Write you name here"; ObjectID = "byW-ld-KfO"; */
+"byW-ld-KfO.placeholder" = "ここに名前を書いてください";
+
+/* Class = "UIButton"; normalTitle = "What's your name?"; ObjectID = "cBj-5L-RKr"; */
+"cBj-5L-RKr.normalTitle" = "あなたの名前は何ですか？";
+
+/* Class = "UINavigationItem"; title = "AALocalizationKit Demo"; ObjectID = "dFn-Ur-N39"; */
+"dFn-Ur-N39.title" = "AALocalizationKit Demo";
+
+/* Class = "UILabel"; text = "Greetings to you"; ObjectID = "tQh-SJ-TFH"; */
+"tQh-SJ-TFH.text" = "あなたへのご挨拶";
+
+/* Class = "UITextField"; placeholder = "Select Language"; ObjectID = "wEK-2I-EPY"; */
+"wEK-2I-EPY.placeholder" = "言語を選択する";

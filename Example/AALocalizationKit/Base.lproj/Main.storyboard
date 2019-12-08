@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iMU-8H-HbQ">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--AALocalizationKit Demo-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="AALocalizationKit_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,11 +18,95 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FwS-G3-zJH">
+                                <rect key="frame" x="20" y="74" width="335" height="40"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Language" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wEK-2I-EPY" customClass="PickerView" customModule="AALocalizationKit_Example" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="8" width="319" height="24"/>
+                                        <color key="textColor" red="0.1137254902" green="0.14901960780000001" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.93725490199999995" blue="0.94509803920000002" alpha="0.99645136440000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="wEK-2I-EPY" firstAttribute="leading" secondItem="FwS-G3-zJH" secondAttribute="leadingMargin" id="HGD-xs-OCc"/>
+                                    <constraint firstItem="wEK-2I-EPY" firstAttribute="trailing" secondItem="FwS-G3-zJH" secondAttribute="trailingMargin" id="KXl-tL-T0t"/>
+                                    <constraint firstItem="wEK-2I-EPY" firstAttribute="top" secondItem="FwS-G3-zJH" secondAttribute="topMargin" id="e7b-Zw-5NA"/>
+                                    <constraint firstAttribute="height" constant="40" id="eHH-74-aGq"/>
+                                    <constraint firstItem="wEK-2I-EPY" firstAttribute="bottom" secondItem="FwS-G3-zJH" secondAttribute="bottomMargin" id="ilc-2r-3wG"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="cln-Wl-7yF">
+                                <rect key="frame" x="20" y="164" width="335" height="290"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K13-CK-xyJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="51"/>
+                                        <segments>
+                                            <segment title="Hello"/>
+                                            <segment title="Hi"/>
+                                        </segments>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Greetings to you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQh-SJ-TFH">
+                                        <rect key="frame" x="0.0" y="80" width="335" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Zud-qX-qjV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBj-5L-RKr">
+                                        <rect key="frame" x="0.0" y="160" width="335" height="50"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="What's your name?"/>
+                                    </button>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write you name here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="byW-ld-KfO">
+                                        <rect key="frame" x="0.0" y="240" width="335" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cln-Wl-7yF" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="90E-vo-E9c"/>
+                            <constraint firstItem="cln-Wl-7yF" firstAttribute="top" secondItem="FwS-G3-zJH" secondAttribute="bottom" constant="50" id="GSt-DQ-CQt"/>
+                            <constraint firstAttribute="trailing" secondItem="FwS-G3-zJH" secondAttribute="trailing" constant="20" id="eU4-h6-4Yh"/>
+                            <constraint firstAttribute="trailing" secondItem="cln-Wl-7yF" secondAttribute="trailing" constant="20" id="etF-eB-U2i"/>
+                            <constraint firstItem="FwS-G3-zJH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="30" id="lRr-cA-cgi"/>
+                            <constraint firstItem="FwS-G3-zJH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="sr8-dj-KMe"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="AALocalizationKit Demo" id="dFn-Ur-N39"/>
+                    <connections>
+                        <outlet property="langPicker" destination="wEK-2I-EPY" id="BAM-hD-mUx"/>
+                        <outlet property="locallizedLabel" destination="tQh-SJ-TFH" id="qSC-Y5-wW5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2015.2" y="132.68365817091455"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QTa-y9-zoQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iMU-8H-HbQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9q9-Wt-cLe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="BuS-ra-3kv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lGK-aS-KwD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>

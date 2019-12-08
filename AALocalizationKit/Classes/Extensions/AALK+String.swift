@@ -11,11 +11,9 @@ import Foundation
 
 extension String {
     
-    func replace(_ originalString: String, with newString: String) -> String {
-        return self.replacingOccurrences(of: originalString, with: newString)
-    }
-    
-    public func localiz(comment: String = "") -> String {
+    /// <#Description#>
+    /// - Parameter comment: <#comment description#>
+    public func aa_localize(comment: String = "") -> String {
         let localized = NSLocalizedString(self, comment: comment)
         if localized == "" {
             return self
@@ -23,20 +21,4 @@ extension String {
         return localized
     }
     
-    var fontFamily: String? {
-        guard let index = firstIndex(of: "-") else { return nil }
-        return String(prefix(upTo: index))
-    }
-    
 }
-
-
-
-
-
-
-
-
-
-
-

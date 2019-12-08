@@ -1,0 +1,6 @@
+framework module AAPickerView {
+  umbrella header "AAPickerView-umbrella.h"
+
+  export *
+  module * { export * }
+}

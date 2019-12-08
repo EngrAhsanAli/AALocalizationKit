@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import AALocalizationKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    // config to set one file only without weight
+    // better confirguration setting
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        configureAALK()
         return true
     }
 

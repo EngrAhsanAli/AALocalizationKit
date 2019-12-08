@@ -7,11 +7,13 @@
 
 import Foundation
 
+// MARK: - UIButton extension
+
 extension UIButton {
     
     func setHorizontalAllignment() {
         guard contentHorizontalAlignment == .left || contentHorizontalAlignment == .right else { return }
-        contentHorizontalAlignment = AALocalizationKit.shared.isRightToLeft ? .left : .right
+        contentHorizontalAlignment = AALK.isRightToLeft ? .left : .right
     }
     
 }

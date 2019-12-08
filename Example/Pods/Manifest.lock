@@ -1,8 +1,14 @@
 PODS:
   - AALocalizationKit (0.1.0)
+  - AAPickerView (1.0)
 
 DEPENDENCIES:
   - AALocalizationKit (from `../`)
+  - AAPickerView
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AAPickerView
 
 EXTERNAL SOURCES:
   AALocalizationKit:
@@ -10,7 +16,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AALocalizationKit: 0fc916f77c16468b6ba093be871e6b28fdc1ff8f
+  AAPickerView: 32334007f7bb541db2b2f8663806f0a6636fdfeb
 
-PODFILE CHECKSUM: 6f9313d52f36f6241bb812a5c33d6cca4864a660
+PODFILE CHECKSUM: 7275082fc127b4227483c4f0b76001e17020c555
 
 COCOAPODS: 1.7.5

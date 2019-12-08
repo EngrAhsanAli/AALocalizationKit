@@ -7,11 +7,15 @@
 
 import Foundation
 
+// MARK: - Bundle extension
+
 extension Bundle {
+    
+    /// <#Description#>
     static func localize() {
         
         let orginalSelector = #selector(localizedString(forKey:value:table:))
-        let swizzledSelector = #selector(customLocaLizedString(forKey:value:table:))
+        let swizzledSelector = #selector(aa_localizedString(forKey:value:table:))
         
         let orginalMethod = class_getInstanceMethod(self, orginalSelector)
         let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
@@ -25,18 +29,23 @@ extension Bundle {
         }
     }
     
-    @objc private func customLocaLizedString(forKey key: String,
+    /// <#Description#>
+    /// - Parameters:
+    ///   - key: <#key description#>
+    ///   - value: <#value description#>
+    ///   - table: <#table description#>
+    @objc fileprivate func aa_localizedString(forKey key: String,
                                              value: String?,
                                              table: String?) -> String {
-        if let bundle = Bundle.main.path(forResource: AALocalizationKit.shared.currentLanguage.rawValue, ofType: "lproj"), let langBundle = Bundle(path: bundle) {
+        if let bundle = Bundle.main.path(forResource: AALK.currentLanguage.rawValue, ofType: "lproj"), let langBundle = Bundle(path: bundle) {
             
-            let text = langBundle.customLocaLizedString(forKey: key, value: value, table: table)
-            if text == Constant.unlocalizedKey.rawValue {
+            let text = langBundle.aa_localizedString(forKey: key, value: value, table: table)
+            if text == DefaultKeys.unlocalizedKey.rawValue {
                 return key
             }
-            return langBundle.customLocaLizedString(forKey: key, value: value, table: table)
+            return langBundle.aa_localizedString(forKey: key, value: value, table: table)
         } else {
-            return Bundle.main.customLocaLizedString(forKey: key, value: value, table: table)
+            return Bundle.main.aa_localizedString(forKey: key, value: value, table: table)
         }
     }
 }

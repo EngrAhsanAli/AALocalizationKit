@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'AALocalizationKit_Example' do
   pod 'AALocalizationKit', :path => '../'
+  pod 'AAPickerView'
 
   target 'AALocalizationKit_Tests' do
     inherit! :search_paths
