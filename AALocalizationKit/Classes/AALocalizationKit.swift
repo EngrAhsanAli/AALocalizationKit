@@ -2,8 +2,8 @@
 //  AALocalizationKit.swift
 //  AALocalizationKit
 //
-//  Created by Ahsan Ali on 11/06/2019.
-//  Copyright © 2019 AA Creations. All rights reserved.
+//  Created by Engr. Ahsan Ali on 22/10/2019.
+//  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
 import UIKit
@@ -11,10 +11,13 @@ import UIKit
 // MARK:- AALocalizationKit
 public class AALocalizationKit {
     
+    /// Singleton a.k.a AALK
     public static let shared: AALocalizationKit = AALocalizationKit()
     
+    /// Callback for localized views when langauge changes
     public var localizedView: ((UIView) -> ())?
-            
+    
+    /// AALK configurations
     public var configuration = AALK_Configuration()
     
     init() {
@@ -22,35 +25,38 @@ public class AALocalizationKit {
         defaultLanguage = AALanguage(rawValue: langCode) ?? .en
     }
     
+    /// Getter/Setter for current Language in the application, default is English language
     public var currentLanguage: AALanguage {
         get {
-            
-            guard let currentLang = UserDefaults.aalk_get(withKey: .selectedLanguageKey) else {
-                fatalError("AALocalizationKit:- Did you set the default language for the app ?")
+            guard let currentLang = DefaultKeys.selectedLanguageKey.get else {
+                print("AALocalizationKit:- Setting English as current language")
+                return .en
             }
-            return AALanguage(rawValue: currentLang)!
+            return AALanguage(rawValue: currentLang) ?? .en
         }
         set {
-            UserDefaults.aalk_set(value: newValue, withKey: .selectedLanguageKey)
+            DefaultKeys.selectedLanguageKey.set(value: newValue)
             
-            let semanticContentAttribute: UISemanticContentAttribute = newValue.isLanguageRightToLeft ? .forceRightToLeft : .forceLeftToRight
-            UIView.appearance().semanticContentAttribute = semanticContentAttribute
+            UIView.appearance().semanticContentAttribute = newValue.isRightToLeft ? .forceRightToLeft : .forceLeftToRight
 
         }
     }
     
+    /// Getter/Setter for default language in the application, default is English language
     public var defaultLanguage: AALanguage {
         get {
-            guard let defaultLanguage = UserDefaults.aalk_get(withKey: .defaultLanguageKey)else {
-                fatalError("AALocalizationKit:- Did you set the default language for the app ?")
+            guard let defaultLanguage = DefaultKeys.defaultLanguageKey.get else {
+                print("AALocalizationKit:- Setting English as default language")
+                return .en
             }
-            return AALanguage(rawValue: defaultLanguage)!
+            return AALanguage(rawValue: defaultLanguage) ?? .en
         }
         set {
-            if UserDefaults.aalk_get(withKey: .defaultLanguageKey) == nil {
+            
+            if DefaultKeys.defaultLanguageKey.get == nil {
                 
-                UserDefaults.aalk_set(value: newValue, withKey: .defaultLanguageKey)
-                UserDefaults.aalk_set(value: newValue, withKey: .selectedLanguageKey)
+                DefaultKeys.defaultLanguageKey.set(value: newValue)
+                DefaultKeys.selectedLanguageKey.set(value: newValue)
                 
                 currentLanguage = newValue
             }
@@ -61,20 +67,38 @@ public class AALocalizationKit {
         }
     }
     
+    /// Getter for language semantic content attribute either right to left or not
     public var isRightToLeft: Bool {
-        return currentLanguage.isLanguageRightToLeft
+        return currentLanguage.isRightToLeft
     }
     
+    /// Get the current application Locale
     public var appLocale: Locale {
         return Locale(identifier: currentLanguage.rawValue)
     }
     
-    public var availableLanguages: [String] {
+    /// Get all configured languages in the application's main bundle
+    public var bundleLanguages: [String] {
         var languages = Bundle.main.localizations
         if let indexOfBase = languages.firstIndex(of: "Base") {
             languages.remove(at: indexOfBase)
         }
         return languages
+    }
+    
+    /// Get all configured languages in the application's main bundle
+    public var bundleLanguageNames: [String] {
+        return bundleLanguages.compactMap {
+            Locale.aalk_languageName(from: $0)
+        }
+    }
+    
+    
+    /// Get all available languages in the main bundle of the application
+    public var languages: [AALanguage] {
+        return bundleLanguages.compactMap {
+            AALanguage(rawValue: $0)
+        }
     }
     
 }

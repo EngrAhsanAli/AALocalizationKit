@@ -10,7 +10,6 @@
 		0E4A584E1991252A130ACC7D5C7269C4 /* AALK+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62200C6830E500D35E165216DAAD5AEE /* AALK+UIButton.swift */; };
 		36516B365ED0B779207A5E61ED6332D8 /* AALK+NSTextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AF04007BBCCD5C599D6A3744BB828 /* AALK+NSTextAlignment.swift */; };
 		38DC131EA192537F73B24F480492202E /* AALocalizationKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C13C5949F4F19B5B2CD6DE521C9C84 /* AALocalizationKit-dummy.m */; };
-		3C934DA75A014639D52EE85C886329A9 /* AALK+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD249694617C9B885C7818D21288317F /* AALK+String.swift */; };
 		4A0D39A2B4ABA665624E6CC390BC9FDB /* AALK+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B5A6565AE74C77FD907F700C801B71 /* AALK+UIView.swift */; };
 		5AB542ABACD863B3384D8E61631C53E1 /* AALocalizationKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C60A9A73A58DF01A873C612AAAF9A36A /* AALocalizationKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6705AD3B03840025A0249F105CDE7C7F /* AAPickerView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B318B9FCB9BD0C1BE386E718D72581A0 /* AAPickerView-dummy.m */; };
@@ -18,7 +17,8 @@
 		6CA5CAE0F9E5DD80EB9D52A23A6ED705 /* Pods-AALocalizationKit_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D94B346A19149639305AEE65B8B605 /* Pods-AALocalizationKit_Tests-dummy.m */; };
 		6CCEA886A942E8550A3C1A4E34DC4662 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		85CAD6E98269844DE0BEEB04CCC37F41 /* AALK+Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16E0666EF11AC9D1A1C7C1B5E5022B1 /* AALK+Bundle.swift */; };
-		8F6CC288237FFBE3005184E4 /* AALK+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6CC287237FFBE3005184E4 /* AALK+Helper.swift */; };
+		8F7C988B23A23393000E59E5 /* AALK+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C988A23A23393000E59E5 /* AALK+String.swift */; };
+		8F7C988F23A233C6000E59E5 /* AALK+Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C988E23A233C6000E59E5 /* AALK+Locale.swift */; };
 		8FAAAE85239D44460009EE8D /* AALK+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAAAE84239D44460009EE8D /* AALK+Configuration.swift */; };
 		A312C8C397F879AAF72FEA8214A8B25F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		B0267F432CA488E5A25AA6C03E57A5AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
@@ -78,7 +78,8 @@
 		7FD3BB2B79DF96732A1C8EE494932779 /* AAPickerView+Helper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AAPickerView+Helper.swift"; path = "AAPickerView/Classes/AAPickerView+Helper.swift"; sourceTree = "<group>"; };
 		816EA534F8E9838E20FAF5F8D0BAE49A /* AAPickerView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AAPickerView.xcconfig; sourceTree = "<group>"; };
 		8CF0914F93A6587E3F8E70914FD1EC7A /* Pods_AALocalizationKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AALocalizationKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8F6CC287237FFBE3005184E4 /* AALK+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AALK+Helper.swift"; sourceTree = "<group>"; };
+		8F7C988A23A23393000E59E5 /* AALK+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AALK+String.swift"; sourceTree = "<group>"; };
+		8F7C988E23A233C6000E59E5 /* AALK+Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AALK+Locale.swift"; sourceTree = "<group>"; };
 		8FAAAE84239D44460009EE8D /* AALK+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AALK+Configuration.swift"; sourceTree = "<group>"; };
 		9AB04FBBD8B719A877F560697B22F061 /* Pods-AALocalizationKit_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AALocalizationKit_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -90,7 +91,6 @@
 		B318B9FCB9BD0C1BE386E718D72581A0 /* AAPickerView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AAPickerView-dummy.m"; sourceTree = "<group>"; };
 		B6C56C6FB62247C032A72F3C14A1240D /* AAPickerView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AAPickerView-umbrella.h"; sourceTree = "<group>"; };
 		BC9043C3AF0233108B4806B2F2FB3D3A /* AALocalizationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AALocalizationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD249694617C9B885C7818D21288317F /* AALK+String.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AALK+String.swift"; sourceTree = "<group>"; };
 		C60A9A73A58DF01A873C612AAAF9A36A /* AALocalizationKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AALocalizationKit-umbrella.h"; sourceTree = "<group>"; };
 		C6B9F6EB82D0B6AE72C51D80EC64C31C /* AALocalizationKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AALocalizationKit-Info.plist"; sourceTree = "<group>"; };
 		C7563158BF657A099A3CC3DBF110BEC1 /* Pods-AALocalizationKit_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AALocalizationKit_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -150,7 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				E16E0666EF11AC9D1A1C7C1B5E5022B1 /* AALK+Bundle.swift */,
-				BD249694617C9B885C7818D21288317F /* AALK+String.swift */,
+				8F7C988E23A233C6000E59E5 /* AALK+Locale.swift */,
+				8F7C988A23A23393000E59E5 /* AALK+String.swift */,
 				62200C6830E500D35E165216DAAD5AEE /* AALK+UIButton.swift */,
 				ACAF3F156B86F3F5B10F8093BB466FD7 /* AALK+UIFont.swift */,
 				35B5A6565AE74C77FD907F700C801B71 /* AALK+UIView.swift */,
@@ -323,7 +324,6 @@
 			children = (
 				A09D96811E10308D74A3E66C822818FE /* AALK+Constants.swift */,
 				8FAAAE84239D44460009EE8D /* AALK+Configuration.swift */,
-				8F6CC287237FFBE3005184E4 /* AALK+Helper.swift */,
 			);
 			name = Support;
 			path = AALocalizationKit/Classes/Support;
@@ -523,12 +523,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F7C988F23A233C6000E59E5 /* AALK+Locale.swift in Sources */,
 				85CAD6E98269844DE0BEEB04CCC37F41 /* AALK+Bundle.swift in Sources */,
 				DD3FC3BAF6A0454FA442E589EEE28E3F /* AALK+Constants.swift in Sources */,
+				8F7C988B23A23393000E59E5 /* AALK+String.swift in Sources */,
 				36516B365ED0B779207A5E61ED6332D8 /* AALK+NSTextAlignment.swift in Sources */,
 				8FAAAE85239D44460009EE8D /* AALK+Configuration.swift in Sources */,
-				3C934DA75A014639D52EE85C886329A9 /* AALK+String.swift in Sources */,
-				8F6CC288237FFBE3005184E4 /* AALK+Helper.swift in Sources */,
 				0E4A584E1991252A130ACC7D5C7269C4 /* AALK+UIButton.swift in Sources */,
 				C7E2D86A18EB991B5B97D72933174B2F /* AALK+UIFont.swift in Sources */,
 				4A0D39A2B4ABA665624E6CC390BC9FDB /* AALK+UIView.swift in Sources */,

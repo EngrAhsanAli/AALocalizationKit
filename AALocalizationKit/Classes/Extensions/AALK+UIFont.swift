@@ -2,13 +2,11 @@
 //  AALocalizationKit+UIFont.swift
 //  AALocalizationKit
 //
-//  Created by M. Ahsan Ali on 22/10/2019.
+//  Created by Engr. Ahsan Ali on 22/10/2019.
+//  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
-import Foundation
-
-// MARK: - UIFont extension
-
+// MARK: - UIFont extension for AALK
 extension UIFont {
     
     /// Gets the UIFont weight  from traits
@@ -25,27 +23,25 @@ extension UIFont {
             ?? [:]
     }
     
-    /// Get the provided language font
-    ///
-    
-    var languageFont: UIFont {
-        if let languageFont = AALK.configuration.languageFont[AALK.currentLanguage]  {
-            if AALK.configuration.keepSameFont, let fontName = languageFont[.regular] {
-                return aalk_font(withName: fontName)
-            }
-            else if let fontName = languageFont[weight] {
-                return aalk_font(withName: fontName)
-            }
-        }
-        return aalk_font(withName: AALK.configuration.defaultFont)
-    }
-    
-    
     // Setting it for better time complexity
-    func aalk_font(withName name: String) -> UIFont {
+    func font(withName name: String) -> UIFont {
         return UIFont(name: name, size: fontDescriptor.pointSize) ?? self
     }
     
+    /// Get the provided language font
+    /// Font files against font weights should be input while application starts
+    /// This will consider the default font with regular font weight if no custom font was provided by the user
+    var languageFont: UIFont {
+        if let languageFont = AALK.configuration.languageFont[AALK.currentLanguage]  {
+            if AALK.configuration.keepSameFont, let fontName = languageFont[.regular] {
+                return font(withName: fontName)
+            }
+            else if let fontName = languageFont[weight] {
+                return font(withName: fontName)
+            }
+        }
+        return font(withName: AALK.configuration.defaultFont)
+    }
+    
+    
 }
-
-

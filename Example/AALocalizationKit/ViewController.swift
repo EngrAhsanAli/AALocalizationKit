@@ -21,22 +21,23 @@ class ViewController: UIViewController {
         localizedViewCallback()
                 
     }
-
+    
+    /// Set the language picker
     func setLanguagePicker() {
         langPicker.setIcon()
         langPicker.valueDidSelected = { self.updateAppLanguage($0 as! Int) }
 
-        let languageNames = AALK.availableLanguages.compactMap {
-            Locale.aalk_language(from: $0) }
+        let languageNames = AALK.bundleLanguageNames
 
         if languageNames.count > 1 {
             langPicker.pickerType = .string(data: languageNames)
             langPicker.pickerRow.font = UIFont(name: AALK.configuration.defaultFont, size: 15)
-            langPicker.text = Locale.aalk_language(from: AALK.currentLanguage.rawValue)
+            langPicker.text = Locale.aalk_languageName(from: AALK.currentLanguage.rawValue)
         }
         
     }
     
+    /// set localizedViewCallback
     func localizedViewCallback() {
         AALK.localizedView = {
             
@@ -60,11 +61,16 @@ class ViewController: UIViewController {
     }
     
     
+    /// Update the language of the application
+    /// - Parameter index: lang index
     func updateAppLanguage(_ index: Int) {
-        let langFromLangs = AALK.availableLanguages[index]
-        guard let lang = AALanguage(rawValue: langFromLangs), AALK.currentLanguage != lang else { return }
+                
+        let lang = AALK.languages[index]
+        guard AALK.currentLanguage != lang else { return }
         AALK.currentLanguage = lang
         print("New Language: ", AALK.appLocale)
+        
+        // Reload this view
         reloadViewFromNib()
         
     }

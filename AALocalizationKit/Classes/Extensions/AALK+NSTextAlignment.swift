@@ -2,20 +2,16 @@
 //  AALK+NSTextAlignment.swift
 //  AALocalizationKit
 //
-//  Created by M. Ahsan Ali on 22/10/2019.
+//  Created by Engr. Ahsan Ali on 22/10/2019.
+//  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
-import Foundation
-
-// MARK: - NSTextAlignment extension
-
+// MARK: - NSTextAlignment extension for AALK
 extension NSTextAlignment {
     
-    /// <#Description#>
-    mutating func setDirection() {
+    /// Set character direction for languages supporting left and right directions
+    mutating func setAllignment() {
         guard self == .left || self == .right else { return }
-        if AALK.isRightToLeft {
-            self = self == .left ? .right : .left
-        }
+        self = AALK.isRightToLeft ? .right : .left
     }
 }

@@ -2,18 +2,19 @@
 //  AALocalizationKit+UIView.swift
 //  AALocalizationKit
 //
-//  Created by M. Ahsan Ali on 22/10/2019.
+//  Created by Engr. Ahsan Ali on 22/10/2019.
+//  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
-import Foundation
-
+// MARK: - IBDesignable UIView for App
 @IBDesignable
 public extension UIView {
+    
+    /// Change the view direction to flip for characters direction is right to left
     @IBInspectable var AAViewDirection: Bool {
         set {
-            if AALK.isRightToLeft {
-                transform = CGAffineTransform(scaleX: -1, y: 1)
-            }
+            guard AALK.isRightToLeft else { return }
+            transform = CGAffineTransform(scaleX: -1, y: 1)
         }
         get {
             fatalError()
@@ -22,9 +23,10 @@ public extension UIView {
 }
 
 
-// MARK: - Swizzling UIView for localization
-
+// MARK: - Swizzling UIView for localization for AALK
 extension UIView {
+    
+    /// Localize method to swizzle the selector
     static func localize() {
         
         let orginalSelector = #selector(awakeFromNib)
@@ -45,28 +47,45 @@ extension UIView {
     
     @objc func swizzledAwakeFromNib() {
         let config = AALK.configuration
+        
         switch self {
-        case let _view as UITextField where config.updateTextField:
+        case let _view as UITextField
+            where config.updateTextField:
+            
             _view.font = _view.font?.languageFont
-            _view.textAlignment.setDirection()
-            _view.placeholder = _view.placeholder?.aa_localize()
-            _view.text = _view.text?.aa_localize()
-        case let _view as UILabel where config.updateLabel:
+            _view.textAlignment.setAllignment()
+            _view.placeholder?.localize()
+            _view.text?.localize()
+            
+        case let _view as UILabel
+            where config.updateLabel:
+            
             _view.font = _view.font?.languageFont
-            _view.textAlignment.setDirection()
-            _view.text = _view.text?.aa_localize()
-        case let _view as UIButton where config.updateButton:
-            if let titleLabel = _view.titleLabel {
-                titleLabel.textAlignment.setDirection()
+            _view.textAlignment.setAllignment()
+            _view.text?.localize()
+            
+        case let _view as UIButton
+            where config.updateButton:
+            
+            if let titleLabel = _view.titleLabel, let text = titleLabel.text?.localize() {
+                titleLabel.textAlignment.setAllignment()
                 titleLabel.font = titleLabel.font?.languageFont
+                
+                _view.setTitle(text, for: .normal)
+                _view.setTitle(text, for: .selected)
+                _view.setAllignment()
             }
-            _view.setHorizontalAllignment()
-            _view.setTitle(_view.title(for: .normal)?.aa_localize(), for: .normal)
-        case let _view as UITextView where config.updateTextView:
+            
+        case let _view as UITextView
+            where config.updateTextView:
+            
             _view.font = _view.font?.languageFont
-            _view.textAlignment.setDirection()
-            _view.text = _view.text?.aa_localize()
-        case let _view as UISegmentedControl where config.updateSegmentedControl:
+            _view.textAlignment.setAllignment()
+            _view.text?.localize()
+            
+        case let _view as UISegmentedControl
+            where config.updateSegmentedControl:
+            
             let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: AALK.configuration.sizeSegmentedControl).languageFont]
             _view.setTitleTextAttributes(attrs, for: .normal)
             _view.setTitleTextAttributes(attrs, for: .selected)
@@ -74,6 +93,8 @@ extension UIView {
         default:
             break
         }
+        
+        // Callback for respective view to localize
         AALK.localizedView?(self)
     }
     

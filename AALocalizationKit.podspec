@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AALocalizationKit'
-  s.version          = '0.1.0'
-  s.summary          = 'AALocalizationKit is a lanaguage manager written in Swift 5.0'
+  s.version          = '1.0'
+  s.summary          = 'AALocalizationKit is really helpful to maintain multiple languages in the application with their custom language fonts and an ability to change the language within your application!'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-AALocalizationKit is a localized language manager for iOS, written in Swift
+AALocalizationKit is really helpful to maintain multiple languages in the application with their custom language fonts and an ability to change the language within your application! With this, you can easily configured framework to configure multiple languages in the iOS application.
                        DESC
 
   s.homepage         = 'https://github.com/EngrAhsanAli/AALocalizationKit'

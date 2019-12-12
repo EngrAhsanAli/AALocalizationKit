@@ -2,16 +2,14 @@
 //  AALK+Bundle.swift
 //  AALocalizationKit
 //
-//  Created by M. Ahsan Ali on 22/10/2019.
+//  Created by Engr. Ahsan Ali on 22/10/2019.
+//  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
-import Foundation
-
-// MARK: - Bundle extension
-
+// MARK: - Bundle extension for AALK
 extension Bundle {
     
-    /// <#Description#>
+    /// Localize method to swizzle the selector 
     static func localize() {
         
         let orginalSelector = #selector(localizedString(forKey:value:table:))
@@ -29,11 +27,11 @@ extension Bundle {
         }
     }
     
-    /// <#Description#>
+    /// Swizzled method to localize the strings found in the bundle
     /// - Parameters:
-    ///   - key: <#key description#>
-    ///   - value: <#value description#>
-    ///   - table: <#table description#>
+    ///   - key: key string
+    ///   - value: value string
+    ///   - table: table string
     @objc fileprivate func aa_localizedString(forKey key: String,
                                              value: String?,
                                              table: String?) -> String {

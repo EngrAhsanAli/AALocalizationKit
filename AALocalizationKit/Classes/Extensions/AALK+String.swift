@@ -1,24 +1,26 @@
 //
-//  AALocalizationKit+String.swift
+//  AALK+String.swift
 //  AALocalizationKit
 //
-//  Created by M. Ahsan Ali on 22/10/2019.
+//  Created by Engr. Ahsan Ali on 22/10/2019.
+//  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
-import Foundation
-
-// MARK: - String extension
-
+// MARK: - String extension for AALK
 extension String {
     
-    /// <#Description#>
-    /// - Parameter comment: <#comment description#>
-    public func aa_localize(comment: String = "") -> String {
-        let localized = NSLocalizedString(self, comment: comment)
+    /// Return the localized string with empty comment
+    @discardableResult
+    mutating func localize() -> String {
+        let localized = NSLocalizedString(self, comment: "")
+        
         if localized == "" {
             return self
         }
+        
+        self = localized
         return localized
+       
     }
     
 }
