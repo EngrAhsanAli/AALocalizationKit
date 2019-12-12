@@ -1,5 +1,5 @@
 
-![](https://github.com/EngrAhsanAli/AALocalizationKit/blob/master/AALocalizationKit.png)
+![](https://github.com/EngrAhsanAli/AALocalizationKit/blob/master/Screenshots/AALocalizationKit.png)
 
 
 
