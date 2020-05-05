@@ -1,6 +1,4 @@
-<p align="center">
-  <img src= "https://raw.githubusercontent.com/EngrAhsanAli/AALocalizationKit/master/Screenshots/AALocalizationKit.png"/>
-</p>
+![](https://github.com/EngrAhsanAli/AALocalizationKit/blob/master/AALocalizationKit.png)
 
 # Table of Contents
 
