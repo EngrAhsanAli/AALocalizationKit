@@ -115,15 +115,15 @@ public class AALocalizationKit {
     /// - Parameters:
     ///   - language: language to set
     ///   - windows: window of the app
-    ///   - viewControllerFactory: viewController factory
+    ///   - viewController: root view controller
     ///   - animation: animation block
     public func setLanguage(language: AALanguage,
                             for windows: [(UIWindow?, String?)]? = nil,
-                            viewControllerFactory: ((String?) -> UIViewController)? = nil,
+                            viewController: ((String?) -> UIViewController)? = nil,
                             animation: ((UIView) -> Void)? = nil) {
         
         AALK.currentLanguage = language
-        guard let viewControllerFactory = viewControllerFactory else {
+        guard let viewController = viewController else {
             return
         }
 
@@ -139,12 +139,11 @@ public class AALocalizationKit {
             windowsToChange = [(UIApplication.shared.keyWindow, nil)]
           }
         }
-        
       
         windowsToChange?.forEach({ windowAndTitle in
     
             let (window, title) = windowAndTitle
-            let rootViewController = viewControllerFactory(title)
+            let rootViewController = viewController(title)
 
             guard let snapshot = window?.snapshotView(afterScreenUpdates: true) else {
               return

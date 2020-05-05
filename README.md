@@ -18,7 +18,7 @@
 
 #AALocalizationKit
 
-[![Swift 3.0](https://img.shields.io/badge/Swift-5.1-orange.svg?style=flat)](https://developer.apple.com/swift/) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![CocoaPods](https://img.shields.io/cocoapods/v/AALocalizationKit.svg)](http://cocoadocs.org/docsets/AALocalizationKit) [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.org/EngrAhsanAli/AALocalizationKit.svg?branch=master)](https://travis-ci.org/EngrAhsanAli/AALocalizationKit) 
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.1-orange.svg?style=flat)](https://developer.apple.com/swift/) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![CocoaPods](https://img.shields.io/cocoapods/v/AALocalizationKit.svg)](http://cocoadocs.org/docsets/AALocalizationKit) [![License MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.org/EngrAhsanAli/AALocalizationKit.svg?branch=master)](https://travis-ci.org/EngrAhsanAli/AALocalizationKit) 
 ![License MIT](https://img.shields.io/github/license/mashape/apistatus.svg) [![CocoaPods](https://img.shields.io/cocoapods/p/AALocalizationKit.svg)]()
 
 

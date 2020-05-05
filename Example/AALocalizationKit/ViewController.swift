@@ -82,11 +82,21 @@ class ViewController: UIViewController {
                 
         let lang = AALK.languages[index]
         guard AALK.currentLanguage != lang else { return }
-        AALK.currentLanguage = lang
-        print("New Language: ", AALK.appLocale)
-        
+
         // Reload this view
         reloadViewFromNib()
+        
+        
+        // AALK.currentLanguage = lang
+        AALK.setLanguage(language: lang, viewControllerFactory: { title -> UIViewController in
+            
+            return self.storyboard!.instantiateInitialViewController()!
+        }) { view in
+          view.transform = CGAffineTransform(scaleX: 2, y: 2)
+          view.alpha = 0
+        }
+        
+        print("New Language: ", AALK.appLocale)
         
     }
     
