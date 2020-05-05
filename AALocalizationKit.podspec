@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AALocalizationKit'
-  s.version          = '1.0'
+  s.version          = '1.1'
   s.summary          = 'AALocalizationKit is really helpful to maintain multiple languages in the application with their custom language fonts and an ability to change the language within your application!'
 
 # This description is used to generate tags and improve search results.

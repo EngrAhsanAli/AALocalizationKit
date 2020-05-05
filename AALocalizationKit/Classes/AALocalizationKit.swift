@@ -67,6 +67,16 @@ public class AALocalizationKit {
         }
     }
     
+    /// Current language string
+    var currentLanguageString: String {
+        AALK.currentLanguage.rawValue
+    }
+    
+    /// Getter for all fonts
+    public var languageFonts: [AALanguage : [UIFont.Weight : String]] {
+        AALK.configuration.languageFont
+    }
+    
     /// Getter for language semantic content attribute either right to left or not
     public var isRightToLeft: Bool {
         return currentLanguage.isRightToLeft
@@ -101,5 +111,56 @@ public class AALocalizationKit {
         }
     }
     
+    /// Set New Language with animation
+    /// - Parameters:
+    ///   - language: language to set
+    ///   - windows: window of the app
+    ///   - viewControllerFactory: viewController factory
+    ///   - animation: animation block
+    public func setLanguage(language: AALanguage,
+                            for windows: [(UIWindow?, String?)]? = nil,
+                            viewControllerFactory: ((String?) -> UIViewController)? = nil,
+                            animation: ((UIView) -> Void)? = nil) {
+        
+        AALK.currentLanguage = language
+        guard let viewControllerFactory = viewControllerFactory else {
+            return
+        }
+
+        var windowsToChange: [(UIWindow?, String?)]?
+        if let windows = windows {
+          windowsToChange = windows
+        } else {
+          if #available(iOS 13.0, *) {
+            windowsToChange = UIApplication.shared.connectedScenes
+              .compactMap({$0 as? UIWindowScene})
+              .map({ ($0.windows.first, $0.title) })
+          } else {
+            windowsToChange = [(UIApplication.shared.keyWindow, nil)]
+          }
+        }
+        
+      
+        windowsToChange?.forEach({ windowAndTitle in
+    
+            let (window, title) = windowAndTitle
+            let rootViewController = viewControllerFactory(title)
+
+            guard let snapshot = window?.snapshotView(afterScreenUpdates: true) else {
+              return
+            }
+            rootViewController.view.addSubview(snapshot);
+
+            window?.rootViewController = rootViewController
+
+            UIView.animate(withDuration: 0.5, animations: {
+              animation?(snapshot)
+            }) { _ in
+              snapshot.removeFromSuperview()
+            }
+        
+      })
+
+    }
 }
 
