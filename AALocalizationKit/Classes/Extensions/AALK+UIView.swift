@@ -46,6 +46,10 @@ extension UIView {
     }
     
     @objc func swizzledAwakeFromNib() {
+        updateLocalization()
+    }
+    
+    func updateLocalization() {
         let config = AALK.configuration
         
         switch self {
@@ -96,7 +100,32 @@ extension UIView {
         
         // Callback for respective view to localize
         AALK.localizedView?(self)
+        
     }
     
+    func aa_findViews<T: UIView>(subclassOf: T.Type) -> [T] {
+        return aa_recursiveSubviews.compactMap { $0 as? T }
+    }
+    var aa_recursiveSubviews: [UIView] {
+        return subviews + subviews.flatMap { $0.aa_recursiveSubviews }
+    }
 }
 
+
+public extension UIView {
+    
+    
+    func aa_updateLocalization(recursive flag: Bool = true) {
+        if flag {
+            let allSubViews = aa_recursiveSubviews
+            if allSubViews.count > 0 {
+                allSubViews.forEach {
+                    $0.updateLocalization()
+                }
+                return
+            }
+            
+        }
+        updateLocalization()
+    }
+}

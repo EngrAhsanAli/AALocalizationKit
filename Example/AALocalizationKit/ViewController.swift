@@ -35,6 +35,21 @@ class ViewController: UIViewController {
             langPicker.text = Locale.aalk_languageName(from: AALK.currentLanguage.rawValue)
         }
         
+        
+        let dynamicLabel = UILabel(frame: CGRect.init(x: 0,
+                                                      y: UIScreen.main.bounds.size.height - 200,
+                                                      width:  UIScreen.main.bounds.size.width,
+                                                      height: 100))
+        dynamicLabel.text = "A dynamic label added programatically"
+        dynamicLabel.font = .boldSystemFont(ofSize: 18)
+        dynamicLabel.numberOfLines = 0
+        dynamicLabel.textAlignment = .center
+        dynamicLabel.textColor = .blue
+        self.view.addSubview(dynamicLabel)
+        
+        view.aa_updateLocalization(recursive: true)
+        
+        
     }
     
     /// set localizedViewCallback
