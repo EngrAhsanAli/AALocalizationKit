@@ -10,7 +10,24 @@
 extension Bundle {
     
     /// Localize method to swizzle the selector 
-    static func localize() {
+    static func startLocalization() {
+        
+        let orginalSelector = #selector(localizedString(forKey:value:table:))
+        let swizzledSelector = #selector(aa_localizedString(forKey:value:table:))
+        
+        let orginalMethod = class_getInstanceMethod(self, orginalSelector)
+        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+        
+        let didAddMethod = class_addMethod(self, orginalSelector, method_getImplementation(swizzledMethod!), method_getTypeEncoding(swizzledMethod!))
+        
+        if didAddMethod {
+            class_replaceMethod(self, swizzledSelector, method_getImplementation(orginalMethod!), method_getTypeEncoding(orginalMethod!))
+        } else {
+            method_exchangeImplementations(orginalMethod!, swizzledMethod!)
+        }
+    }
+    
+    static func stopLocalization() {
         
         let orginalSelector = #selector(localizedString(forKey:value:table:))
         let swizzledSelector = #selector(aa_localizedString(forKey:value:table:))

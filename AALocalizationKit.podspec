@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AALocalizationKit'
-  s.version          = '1.1'
+  s.version          = '1.2'
   s.summary          = 'AALocalizationKit is a great localization manager that is written in pure swift.'
 
 # This description is used to generate tags and improve search results.

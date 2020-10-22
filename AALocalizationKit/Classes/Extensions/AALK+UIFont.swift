@@ -45,3 +45,17 @@ extension UIFont {
     
     
 }
+
+
+public extension UIFont {
+    
+    class func aalkFontName(_ weight: UIFont.Weight) -> String {
+        (AALK.languageFonts[AALK.currentLanguage]?[weight])!
+    }
+    
+    func aalk_changeFont(_ weight: UIFont.Weight) -> UIFont {
+        let fontName = UIFont.aalkFontName(weight)
+        return UIFont(name: fontName, size: self.pointSize) ?? self
+    }
+    
+}

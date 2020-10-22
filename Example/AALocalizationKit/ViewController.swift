@@ -88,7 +88,7 @@ class ViewController: UIViewController {
         
         
         // AALK.currentLanguage = lang
-        AALK.setLanguage(language: lang, viewControllerFactory: { title -> UIViewController in
+        AALK.setLanguage(language: lang, viewController: { title -> UIViewController in
             
             return self.storyboard!.instantiateInitialViewController()!
         }) { view in

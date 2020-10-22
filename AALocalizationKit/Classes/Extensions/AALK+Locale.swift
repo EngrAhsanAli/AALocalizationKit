@@ -16,4 +16,24 @@ public extension Locale {
         return locale.displayName(forKey: NSLocale.Key.identifier , value: identifier)!
     }
     
+    
+    /// Configs localization with given font names and weights
+    /// - Parameter fonts: array of fonts with names
+    static func aalk_configure(_ fonts: [String : [UIFont.Weight : String]]) {
+        var aalkFonts = [AALanguage : [UIFont.Weight : String]]()
+        for (key, value) in fonts {
+            if let lang = AALanguage(rawValue: key) {
+                aalkFonts[lang] = value
+            }
+            else {
+                fatalError("AALocalization:- The names of the fonts are not in correct format. Font family and weight must seperate from -")
+            }
+        }
+        
+        if let fontFamily = aalkFonts.first!.key.rawValue.components(separatedBy: "-").first {
+            AALK.configuration.defaultFont = fontFamily
+        }
+        AALK.configuration.languageFont = aalkFonts
+        
+    }
 }

@@ -153,6 +153,9 @@ func configureAALK() {
             
     AALK.configuration.languageFont = languageFont
     AALK.configuration.defaultFont = "Roboto"
+    
+    // AALK.setAutoFontChange(enable: false) // this will enable or disable the font changes
+    // AALK.setAutoLocalization(enable: false) // this will enable or disable the font changes
 }
 ```
 

@@ -26,8 +26,8 @@ public extension UIView {
 // MARK: - Swizzling UIView for localization for AALK
 extension UIView {
     
-    /// Localize method to swizzle the selector
-    static func localize() {
+    /// Start localize method to swizzle the selector
+    static func startFontChange() {
         
         let orginalSelector = #selector(awakeFromNib)
         let swizzledSelector = #selector(swizzledAwakeFromNib)
@@ -42,6 +42,20 @@ extension UIView {
         } else {
             method_exchangeImplementations(orginalMethod!, swizzledMethod!)
         }
+        
+    }
+    
+    /// Stop localize method to swizzle the selector
+    static func stopFontChange() {
+        
+        let orginalSelector = #selector(awakeFromNib)
+        let swizzledSelector = #selector(swizzledAwakeFromNib)
+        
+        guard let orginalMethod = class_getInstanceMethod(self, orginalSelector),
+              let swizzledMethod = class_getInstanceMethod(self, swizzledSelector) else {
+            return
+        }
+        method_exchangeImplementations(swizzledMethod, orginalMethod)
         
     }
     
