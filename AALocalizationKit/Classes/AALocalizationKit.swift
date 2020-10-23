@@ -61,8 +61,8 @@ public class AALocalizationKit {
                 currentLanguage = newValue
             }
             
-            UIView.startFontChange()
-            Bundle.startLocalization()
+            setAutoFontChange(enable: true)
+            setAutoLocalization(enable: true)
             
         }
     }
@@ -173,7 +173,6 @@ public class AALocalizationKit {
         }
     }
     
-    
     /// Set auto font chage of strings with method swizzling
     /// - Parameter enable: should enable flag
     public func setAutoFontChange(enable: Bool) {
@@ -184,10 +183,6 @@ public class AALocalizationKit {
             UIView.stopFontChange()
         }
     }
-    
-    
-    
-    
-    
+
 }
 

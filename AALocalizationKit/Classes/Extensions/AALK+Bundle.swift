@@ -6,42 +6,39 @@
 //  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
+/// Flag to auto localize the strings if available
+fileprivate var enableLocalization: Bool = false
+
 // MARK: - Bundle extension for AALK
 extension Bundle {
     
     /// Localize method to swizzle the selector 
     static func startLocalization() {
-        
+        guard !enableLocalization else {
+            print("AALocalizationKit:- Localization of strings is already enabled")
+            return
+        }
         let orginalSelector = #selector(localizedString(forKey:value:table:))
         let swizzledSelector = #selector(aa_localizedString(forKey:value:table:))
-        
         let orginalMethod = class_getInstanceMethod(self, orginalSelector)
         let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-        
-        let didAddMethod = class_addMethod(self, orginalSelector, method_getImplementation(swizzledMethod!), method_getTypeEncoding(swizzledMethod!))
-        
-        if didAddMethod {
-            class_replaceMethod(self, swizzledSelector, method_getImplementation(orginalMethod!), method_getTypeEncoding(orginalMethod!))
-        } else {
-            method_exchangeImplementations(orginalMethod!, swizzledMethod!)
-        }
+        method_exchangeImplementations(orginalMethod!, swizzledMethod!)
+        enableLocalization = true
     }
     
     static func stopLocalization() {
+        guard enableLocalization else {
+            print("AALocalizationKit:- Localization of strings is not enabled yet")
+            return
+        }
         
         let orginalSelector = #selector(localizedString(forKey:value:table:))
         let swizzledSelector = #selector(aa_localizedString(forKey:value:table:))
-        
         let orginalMethod = class_getInstanceMethod(self, orginalSelector)
         let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+        method_exchangeImplementations(orginalMethod!, swizzledMethod!)
+        enableLocalization = false
         
-        let didAddMethod = class_addMethod(self, orginalSelector, method_getImplementation(swizzledMethod!), method_getTypeEncoding(swizzledMethod!))
-        
-        if didAddMethod {
-            class_replaceMethod(self, swizzledSelector, method_getImplementation(orginalMethod!), method_getTypeEncoding(orginalMethod!))
-        } else {
-            method_exchangeImplementations(orginalMethod!, swizzledMethod!)
-        }
     }
     
     /// Swizzled method to localize the strings found in the bundle
