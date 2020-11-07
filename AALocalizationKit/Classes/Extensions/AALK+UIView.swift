@@ -6,6 +6,9 @@
 //  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
 
+/// Flag to make change of fonts
+fileprivate var enableFontChange: Bool = false
+
 // MARK: - IBDesignable UIView for App
 @IBDesignable
 public extension UIView {
@@ -26,23 +29,33 @@ public extension UIView {
 // MARK: - Swizzling UIView for localization for AALK
 extension UIView {
     
-    /// Localize method to swizzle the selector
-    static func localize() {
+    /// Start localize method to swizzle the selector
+    static func startFontChange() {
+        guard !enableFontChange else {
+            print("AALocalizationKit:- Font change already enabled")
+            return
+        }
+        let orginalSelector = #selector(awakeFromNib)
+        let swizzledSelector = #selector(swizzledAwakeFromNib)
+        let orginalMethod = class_getInstanceMethod(self, orginalSelector)
+        let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
+        method_exchangeImplementations(orginalMethod!, swizzledMethod!)
+        enableFontChange = true
+    }
+    
+    /// Stop localize method to swizzle the selector
+    static func stopFontChange() {
+        guard enableFontChange else {
+            print("AALocalizationKit:- Font change is not enabled yet")
+            return
+        }
         
         let orginalSelector = #selector(awakeFromNib)
         let swizzledSelector = #selector(swizzledAwakeFromNib)
-        
         let orginalMethod = class_getInstanceMethod(self, orginalSelector)
         let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-        
-        let didAddMethod = class_addMethod(self, orginalSelector, method_getImplementation(swizzledMethod!), method_getTypeEncoding(swizzledMethod!))
-        
-        if didAddMethod {
-            class_replaceMethod(self, swizzledSelector, method_getImplementation(orginalMethod!), method_getTypeEncoding(orginalMethod!))
-        } else {
-            method_exchangeImplementations(orginalMethod!, swizzledMethod!)
-        }
-        
+        method_exchangeImplementations(swizzledMethod!, orginalMethod!)
+        enableFontChange = false
     }
     
     @objc func swizzledAwakeFromNib() {
@@ -55,44 +68,23 @@ extension UIView {
         switch self {
         case let _view as UITextField
             where config.updateTextField:
-            
-            _view.font = _view.font?.languageFont
-            _view.textAlignment.setAllignment()
-            _view.placeholder?.localize()
-            _view.text?.localize()
+            _view.changeDefaultFont = true
             
         case let _view as UILabel
             where config.updateLabel:
-            
-            _view.font = _view.font?.languageFont
-            _view.textAlignment.setAllignment()
-            _view.text?.localize()
+            _view.changeDefaultFont = true
             
         case let _view as UIButton
             where config.updateButton:
-            
-            if let titleLabel = _view.titleLabel, let text = titleLabel.text?.localize() {
-                titleLabel.textAlignment.setAllignment()
-                titleLabel.font = titleLabel.font?.languageFont
-                
-                _view.setTitle(text, for: .normal)
-                _view.setTitle(text, for: .selected)
-                _view.setAllignment()
-            }
+            _view.changeDefaultFont = true
             
         case let _view as UITextView
             where config.updateTextView:
-            
-            _view.font = _view.font?.languageFont
-            _view.textAlignment.setAllignment()
-            _view.text?.localize()
+            _view.changeDefaultFont = true
             
         case let _view as UISegmentedControl
             where config.updateSegmentedControl:
-            
-            let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: AALK.configuration.sizeSegmentedControl).languageFont]
-            _view.setTitleTextAttributes(attrs, for: .normal)
-            _view.setTitleTextAttributes(attrs, for: .selected)
+            _view.changeDefaultFont = true
            
         default:
             break

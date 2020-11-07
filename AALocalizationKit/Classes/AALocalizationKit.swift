@@ -61,9 +61,6 @@ public class AALocalizationKit {
                 currentLanguage = newValue
             }
             
-            UIView.localize()
-            Bundle.localize()
-            
         }
     }
     
@@ -161,5 +158,38 @@ public class AALocalizationKit {
       })
 
     }
+    
+    /// Set auto localization of strings with method swizzling
+    /// - Parameter enable: should enable flag
+    public func setAutoLocalization(enable: Bool) {
+        if enable {
+            Bundle.startLocalization()
+        }
+        else {
+            Bundle.stopLocalization()
+        }
+    }
+    
+    /// Set auto font chage of strings with method swizzling
+    /// - Parameter enable: should enable flag
+    public func setAutoFontChange(enable: Bool) {
+        if enable {
+            UIView.startFontChange()
+        }
+        else {
+            UIView.stopFontChange()
+        }
+    }
+    
+    public func enableChange(enable: Bool) {
+        setAutoFontChange(enable: enable)
+        setAutoLocalization(enable: enable)
+    }
+    
+    
+    
+    
 }
+
+
 

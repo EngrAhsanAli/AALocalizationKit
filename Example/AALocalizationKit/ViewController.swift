@@ -19,7 +19,6 @@ class ViewController: UIViewController {
         
         setLanguagePicker()
         localizedViewCallback()
-                
     }
     
     /// Set the language picker
@@ -47,7 +46,7 @@ class ViewController: UIViewController {
         dynamicLabel.textColor = .blue
         self.view.addSubview(dynamicLabel)
         
-        view.aa_updateLocalization(recursive: true)
+//        view.aa_updateLocalization(recursive: true)
         
         
     }
@@ -88,7 +87,7 @@ class ViewController: UIViewController {
         
         
         // AALK.currentLanguage = lang
-        AALK.setLanguage(language: lang, viewControllerFactory: { title -> UIViewController in
+        AALK.setLanguage(language: lang, viewController: { title -> UIViewController in
             
             return self.storyboard!.instantiateInitialViewController()!
         }) { view in

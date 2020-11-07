@@ -12,6 +12,9 @@ public struct AALK_Configuration {
     /// Default font family for default language of the application
     public var defaultFont: String = "GillSans"
     
+    /// Fonts those should not override
+    public var exceptions: [String] = []
+
     /// Flag to keep same font family if no respective font weight found in the application
     public var keepSameFont: Bool = true
     
@@ -36,4 +39,15 @@ public struct AALK_Configuration {
     /// UIButton flag to update when language changes
     public var updateButton: Bool = true
 
+}
+
+extension AALK_Configuration {
+    
+    func shouldOverrideFont(_ name: String?) -> Bool {
+        guard let name = name else {
+            return true
+        }
+        return !AALK.configuration.exceptions.contains(name)
+    }
+    
 }

@@ -84,7 +84,11 @@ func configureAALK() {
                .medium: "NotoSerifJP-Medium",
                .bold: "NotoSerifJP-Bold"]
     ]
-            
+    
     AALK.configuration.languageFont = languageFont
     AALK.configuration.defaultFont = "Roboto"
+    AALK.enableChange(enable: true)
+//    AALK.setApperance([ViewController.self])
+//    AALK.setAutoFontChange(enable: false)
+//    AALK.setAutoLocalization(enable: false)
 }
