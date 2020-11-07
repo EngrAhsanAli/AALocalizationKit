@@ -81,7 +81,7 @@ extension UILabel {
             fatalError()
         }
         set {
-            guard newValue, AALK.configuration.shouldOverrideFont(font?.fontName) else { return }
+            guard newValue else { return }
             self.font = self.font.languageFont
         }
     }
@@ -94,7 +94,7 @@ extension UITextField {
             fatalError()
         }
         set {
-            guard newValue, AALK.configuration.shouldOverrideFont(font?.fontName) else { return }
+            guard newValue else { return }
             font = font?.languageFont
             textAlignment.setAllignment()
             placeholder?.localize()
@@ -112,7 +112,7 @@ extension UIButton {
         }
         set {
             guard newValue else { return }
-            if let titleLabel = titleLabel, let text = titleLabel.text?.localize(),  AALK.configuration.shouldOverrideFont(titleLabel.font.fontName) {
+            if let titleLabel = titleLabel, let text = titleLabel.text?.localize() {
                 titleLabel.textAlignment.setAllignment()
                 titleLabel.font = titleLabel.font?.languageFont
                 
@@ -131,7 +131,7 @@ extension UITextView {
             fatalError()
         }
         set {
-            guard newValue, AALK.configuration.shouldOverrideFont(font?.fontName) else { return }
+            guard newValue else { return }
             font = font?.languageFont
             textAlignment.setAllignment()
             text?.localize()
@@ -146,7 +146,7 @@ extension UISegmentedControl {
             fatalError()
         }
         set {
-            guard newValue, AALK.configuration.shouldOverrideFont(nil) else { return }
+            guard newValue else { return }
             let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: AALK.configuration.sizeSegmentedControl).languageFont]
             setTitleTextAttributes(attrs, for: .normal)
             setTitleTextAttributes(attrs, for: .selected)
