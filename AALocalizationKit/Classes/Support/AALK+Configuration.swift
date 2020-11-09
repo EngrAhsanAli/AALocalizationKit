@@ -47,7 +47,7 @@ extension AALK_Configuration {
         guard let name = name else {
             return true
         }
-        return !AALK.configuration.exceptions.contains(name)
+        return !exceptions.contains(name)
     }
     
 }

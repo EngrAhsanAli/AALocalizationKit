@@ -10,57 +10,57 @@ import UIKit
 public extension AALocalizationKit {
     
     func setLabelApperance(in container: [UIAppearanceContainer.Type]) {
-        guard configuration.updateLabel else {
+        guard AALK.configuration.updateLabel else {
             return
         }
-        if container.isEmpty {
-            UILabel.appearance(whenContainedInInstancesOf: container).changeDefaultFont = true
+        if container.count > 0 {
+            UILabel.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
         } else {
-            UILabel.appearance().changeDefaultFont = true
+            UILabel.appearance().changeDefaultFont = AALK.configuration
         }
     }
     
     func setTextFieldApperance(in container: [UIAppearanceContainer.Type]) {
-        guard configuration.updateTextField else {
+        guard AALK.configuration.updateTextField else {
             return
         }
-        if container.isEmpty {
-            UITextField.appearance(whenContainedInInstancesOf: container).changeDefaultFont = true
+        if container.count > 0 {
+            UITextField.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
         } else {
-            UITextField.appearance().changeDefaultFont = true
+            UITextField.appearance().changeDefaultFont = AALK.configuration
         }
     }
     
     func setButtonApperance(in container: [UIAppearanceContainer.Type]) {
-        guard configuration.updateButton else {
+        guard AALK.configuration.updateButton else {
             return
         }
-        if container.isEmpty {
-            UIButton.appearance(whenContainedInInstancesOf: container).changeDefaultFont = true
+        if container.count > 0 {
+            UIButton.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
         } else {
-            UIButton.appearance().changeDefaultFont = true
+            UIButton.appearance().changeDefaultFont = AALK.configuration
         }
     }
     
     func setTextViewApperance(in container: [UIAppearanceContainer.Type]) {
-        guard configuration.updateTextView else {
+        guard AALK.configuration.updateTextView else {
             return
         }
-        if container.isEmpty {
-            UITextView.appearance(whenContainedInInstancesOf: container).changeDefaultFont = true
+        if container.count > 0 {
+            UITextView.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
         } else {
-            UITextView.appearance().changeDefaultFont = true
+            UITextView.appearance().changeDefaultFont = AALK.configuration
         }
     }
     
     func setSegmentedControlApperance(in container: [UIAppearanceContainer.Type]) {
-        guard configuration.updateSegmentedControl else {
+        guard AALK.configuration.updateSegmentedControl else {
             return
         }
-        if container.isEmpty {
-            UISegmentedControl.appearance(whenContainedInInstancesOf: container).changeDefaultFont = true
+        if container.count > 0 {
+            UISegmentedControl.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
         } else {
-            UISegmentedControl.appearance().changeDefaultFont = true
+            UISegmentedControl.appearance().changeDefaultFont = AALK.configuration
         }
     }
     
@@ -73,28 +73,39 @@ public extension AALocalizationKit {
     }
 }
 
-
 extension UILabel {
     
-    @objc var changeDefaultFont: Bool {
+    @objc var changeDefaultFont: Any {
         get {
             fatalError()
         }
         set {
-            guard newValue else { return }
-            self.font = self.font.languageFont
+            guard let config = newValue as? AALK_Configuration, config.updateLabel else { return }
+            
+            if let name = font?.fontName, config.exceptions.contains(name) {
+                self.font = font?.font(withName: name)
+                return
+            }
+            
+            self.font = self.font?.languageFont
         }
     }
 }
 
 extension UITextField {
     
-    @objc var changeDefaultFont: Bool {
+    @objc var changeDefaultFont: Any {
         get {
             fatalError()
         }
         set {
-            guard newValue else { return }
+            guard let config = newValue as? AALK_Configuration, config.updateTextField else { return }
+
+            if let name = font?.fontName, config.exceptions.contains(name) {
+                self.font = font?.font(withName: name)
+                return
+            }
+            
             font = font?.languageFont
             textAlignment.setAllignment()
             placeholder?.localize()
@@ -106,12 +117,18 @@ extension UITextField {
 
 extension UIButton {
     
-    @objc var changeDefaultFont: Bool {
+    @objc var changeDefaultFont: Any {
         get {
             fatalError()
         }
         set {
-            guard newValue else { return }
+            guard let config = newValue as? AALK_Configuration, config.updateButton else { return }
+
+            if let font = titleLabel?.font, config.exceptions.contains(font.fontName) {
+                titleLabel!.font = font.font(withName: font.fontName)
+                return
+            }
+            
             if let titleLabel = titleLabel, let text = titleLabel.text?.localize() {
                 titleLabel.textAlignment.setAllignment()
                 titleLabel.font = titleLabel.font?.languageFont
@@ -126,12 +143,18 @@ extension UIButton {
 
 extension UITextView {
     
-    @objc var changeDefaultFont: Bool {
+    @objc var changeDefaultFont: Any {
         get {
             fatalError()
         }
         set {
-            guard newValue else { return }
+            guard let config = newValue as? AALK_Configuration, config.updateTextView else { return }
+
+            if let name = font?.fontName, config.exceptions.contains(name) {
+                self.font = font?.font(withName: name)
+                return
+            }
+            
             font = font?.languageFont
             textAlignment.setAllignment()
             text?.localize()
@@ -141,13 +164,14 @@ extension UITextView {
 
 extension UISegmentedControl {
     
-    @objc var changeDefaultFont: Bool {
+    @objc var changeDefaultFont: Any {
         get {
             fatalError()
         }
         set {
-            guard newValue else { return }
-            let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: AALK.configuration.sizeSegmentedControl).languageFont]
+            guard let config = newValue as? AALK_Configuration, config.updateSegmentedControl else { return }
+
+            let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: config.sizeSegmentedControl).languageFont]
             setTitleTextAttributes(attrs, for: .normal)
             setTitleTextAttributes(attrs, for: .selected)
         }

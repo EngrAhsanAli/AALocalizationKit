@@ -68,19 +68,19 @@ extension UIView {
         switch self {
         case let _view as UITextField
             where config.updateTextField:
-            _view.changeDefaultFont = AALK.configuration.shouldOverrideFont(_view.font?.fontName)
+            _view.changeDefaultFont = true
             
         case let _view as UILabel
                 where config.updateLabel:
-            _view.changeDefaultFont = AALK.configuration.shouldOverrideFont(_view.font?.fontName)
+            _view.changeDefaultFont = true
             
         case let _view as UIButton
             where config.updateButton:
-            _view.changeDefaultFont = AALK.configuration.shouldOverrideFont(_view.titleLabel?.font.fontName)
+            _view.changeDefaultFont = true
             
         case let _view as UITextView
             where config.updateTextView:
-            _view.changeDefaultFont = AALK.configuration.shouldOverrideFont(_view.font?.fontName)
+            _view.changeDefaultFont = true
             
         case let _view as UISegmentedControl
             where config.updateSegmentedControl:

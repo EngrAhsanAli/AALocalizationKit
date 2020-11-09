@@ -10,7 +10,6 @@
 // MARK: - Constants
 public let AALK = AALocalizationKit.shared
 
-
 // MARK: - DefaultKeys for User Default keys
 enum DefaultKeys: String {
     case selectedLanguageKey = "AALocalizationKitSelectedLanguage"

@@ -17,7 +17,7 @@ public class AALocalizationKit {
     /// Callback for localized views when langauge changes
     public var localizedView: ((UIView) -> ())?
     
-    /// AALK configurations
+    /// AALK configurations Singleton
     public var configuration = AALK_Configuration()
     
     init() {
