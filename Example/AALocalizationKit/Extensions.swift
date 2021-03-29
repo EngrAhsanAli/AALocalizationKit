@@ -88,8 +88,12 @@ func configureAALK() {
     AALK.configuration.languageFont = languageFont
     AALK.configuration.defaultFont = "Roboto"
     AALK.configuration.exceptions = ["SomeFont"]
-    AALK.enableChange(enable: true)
-//    AALK.setApperance([ViewController.self])
-//    AALK.setAutoFontChange(enable: false)
-//    AALK.setAutoLocalization(enable: false)
+    
+    let options = AALK_Configuration.UpdateOptions()
+    options.container = [ViewController.self]
+    AALK.configuration.appearanceElements = [.label(options),
+                                             .button(options),
+                                             .textField(options),
+                                             .textView(options)]
+    AALK.setApperance()
 }

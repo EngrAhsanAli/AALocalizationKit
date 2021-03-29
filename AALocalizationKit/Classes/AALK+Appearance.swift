@@ -4,176 +4,203 @@
 //
 //  Created by Muhammad Ahsan Ali on 2020/11/07.
 //
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 
-public extension AALocalizationKit {
+extension AALocalizationKit {
     
-    func setLabelApperance(in container: [UIAppearanceContainer.Type]) {
-        guard AALK.configuration.updateLabel else {
-            return
+    func setLabelApperance(of appearance: AALK_Configuration.UpdateOptions) {
+        let config = configuration
+        let container = appearance.container
+        let instance = (container.count > 0) ?
+            UILabel.appearance(whenContainedInInstancesOf: container) :
+            UILabel.appearance()
+        
+        if appearance.alignment {
+            instance.textAlignment.setAllignment()
         }
-        if container.count > 0 {
-            UILabel.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
-        } else {
-            UILabel.appearance().changeDefaultFont = AALK.configuration
+        if appearance.font {
+            instance.aalkChangeFont = config
+        }
+        if appearance.localize {
+            instance.aalkChangeText = config
         }
     }
     
-    func setTextFieldApperance(in container: [UIAppearanceContainer.Type]) {
-        guard AALK.configuration.updateTextField else {
-            return
+    func setTextFieldApperance(of appearance: AALK_Configuration.UpdateOptions) {
+        let config = configuration
+        let container = appearance.container
+        let instance = (container.count > 0) ?
+            UITextField.appearance(whenContainedInInstancesOf: container) :
+            UITextField.appearance()
+        
+        if appearance.alignment {
+            instance.textAlignment.setAllignment()
         }
-        if container.count > 0 {
-            UITextField.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
-        } else {
-            UITextField.appearance().changeDefaultFont = AALK.configuration
+        if appearance.font {
+            instance.aalkChangeFont = config
         }
-    }
-    
-    func setButtonApperance(in container: [UIAppearanceContainer.Type]) {
-        guard AALK.configuration.updateButton else {
-            return
-        }
-        if container.count > 0 {
-            UIButton.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
-        } else {
-            UIButton.appearance().changeDefaultFont = AALK.configuration
+        if appearance.localize {
+            instance.aalkChangeText = config
         }
     }
     
-    func setTextViewApperance(in container: [UIAppearanceContainer.Type]) {
-        guard AALK.configuration.updateTextView else {
-            return
+    func setButtonApperance(of appearance: AALK_Configuration.UpdateOptions) {
+        let config = configuration
+        let container = appearance.container
+        let instance = (container.count > 0) ?
+            UIButton.appearance(whenContainedInInstancesOf: container) :
+            UIButton.appearance()
+        
+        if appearance.alignment {
+            instance.titleLabel?.textAlignment.setAllignment()
         }
-        if container.count > 0 {
-            UITextView.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
-        } else {
-            UITextView.appearance().changeDefaultFont = AALK.configuration
+        if appearance.font {
+            instance.aalkChangeFont = config
         }
-    }
-    
-    func setSegmentedControlApperance(in container: [UIAppearanceContainer.Type]) {
-        guard AALK.configuration.updateSegmentedControl else {
-            return
-        }
-        if container.count > 0 {
-            UISegmentedControl.appearance(whenContainedInInstancesOf: container).changeDefaultFont = AALK.configuration
-        } else {
-            UISegmentedControl.appearance().changeDefaultFont = AALK.configuration
+        if appearance.localize {
+            instance.aalkChangeText = config
         }
     }
     
-    func setApperance(_ container: [UIAppearanceContainer.Type] = []) {
-        setLabelApperance(in: container)
-        setTextFieldApperance(in: container)
-        setButtonApperance(in: container)
-        setTextViewApperance(in: container)
-        setSegmentedControlApperance(in: container)
+    func setTextViewApperance(of appearance: AALK_Configuration.UpdateOptions) {
+        let config = configuration
+        let container = appearance.container
+        let instance = (container.count > 0) ?
+            UITextView.appearance(whenContainedInInstancesOf: container) :
+            UITextView.appearance()
+        
+        if appearance.alignment {
+            instance.textAlignment.setAllignment()
+        }
+        if appearance.font {
+            instance.aalkChangeFont = config
+        }
+        if appearance.localize {
+            instance.aalkChangeText = config
+        }
+    }
+    
+    func setSegmentedControlApperance(of appearance: AALK_Configuration.UpdateOptions) {
+        let config = configuration
+        let container = appearance.container
+        let instance = (container.count > 0) ?
+            UISegmentedControl.appearance(whenContainedInInstancesOf: container) :
+            UISegmentedControl.appearance()
+        
+        if appearance.alignment {
+            // TODO:- set text allignments
+        }
+        if appearance.font {
+            instance.aalkChangeFont = config
+        }
+        if appearance.localize {
+            instance.aalkChangeText = config
+        }
+    }
+    
+}
+
+fileprivate extension UILabel {
+    
+    @objc var aalkChangeText: AALK_Configuration {
+        get { fatalError() }
+        set {
+            guard let text = newValue.localizedString(text) else { return }
+            self.text = text
+        }
+    }
+    
+    @objc var aalkChangeFont: AALK_Configuration {
+        get { fatalError() }
+        set { font = newValue.setLanguageFont(font) }
     }
 }
 
-extension UILabel {
+fileprivate extension UITextField {
     
-    @objc var changeDefaultFont: Any {
-        get {
-            fatalError()
-        }
+    @objc var aalkChangeText: AALK_Configuration {
+        get { fatalError() }
         set {
-            guard let config = newValue as? AALK_Configuration, config.updateLabel else { return }
-            
-            if let name = font?.fontName, config.exceptions.contains(name) {
-                self.font = font?.font(withName: name)
-                return
-            }
-            
-            self.font = self.font?.languageFont
+            if let text = newValue.localizedString(text) { self.text = text }
+            if let placeholder = newValue.localizedString(placeholder) { self.placeholder = placeholder }
         }
+    }
+    
+    @objc var aalkChangeFont: AALK_Configuration {
+        get { fatalError() }
+        set { font = newValue.setLanguageFont(font) }
     }
 }
 
-extension UITextField {
+fileprivate extension UITextView {
     
-    @objc var changeDefaultFont: Any {
-        get {
-            fatalError()
-        }
+    @objc var aalkChangeText: AALK_Configuration {
+        get { fatalError() }
         set {
-            guard let config = newValue as? AALK_Configuration, config.updateTextField else { return }
-
-            if let name = font?.fontName, config.exceptions.contains(name) {
-                self.font = font?.font(withName: name)
-                return
-            }
-            
-            font = font?.languageFont
-            textAlignment.setAllignment()
-            placeholder?.localize()
-            text?.localize()
-            
+            guard let text = newValue.localizedString(text) else { return }
+            self.text = text
         }
+    }
+    
+    @objc var aalkChangeFont: AALK_Configuration {
+        get { fatalError() }
+        set { font = newValue.setLanguageFont(font) }
     }
 }
 
-extension UIButton {
+fileprivate extension UIButton {
     
-    @objc var changeDefaultFont: Any {
-        get {
-            fatalError()
-        }
+    @objc var aalkChangeText: AALK_Configuration {
+        get { fatalError() }
         set {
-            guard let config = newValue as? AALK_Configuration, config.updateButton else { return }
-
-            if let font = titleLabel?.font, config.exceptions.contains(font.fontName) {
-                titleLabel!.font = font.font(withName: font.fontName)
-                return
-            }
-            
-            if let titleLabel = titleLabel, let text = titleLabel.text?.localize() {
-                titleLabel.textAlignment.setAllignment()
-                titleLabel.font = titleLabel.font?.languageFont
-                
-                setTitle(text, for: .normal)
-                setTitle(text, for: .selected)
-                setAllignment()
-            }
+            if let text = newValue.localizedString(title(for: .normal)) { setTitle(text, for: .normal) }
+            if let text = newValue.localizedString(title(for: .selected)) { setTitle(text, for: .selected) }
         }
+    }
+    
+    @objc var aalkChangeFont: AALK_Configuration {
+        get { fatalError() }
+        set { titleLabel?.font = newValue.setLanguageFont(titleLabel?.font) }
     }
 }
 
-extension UITextView {
+fileprivate extension UISegmentedControl {
     
-    @objc var changeDefaultFont: Any {
-        get {
-            fatalError()
-        }
+    @objc var aalkChangeText: AALK_Configuration {
+        get { fatalError() }
         set {
-            guard let config = newValue as? AALK_Configuration, config.updateTextView else { return }
-
-            if let name = font?.fontName, config.exceptions.contains(name) {
-                self.font = font?.font(withName: name)
-                return
-            }
-            
-            font = font?.languageFont
-            textAlignment.setAllignment()
-            text?.localize()
+            // TODO:- localization
         }
     }
-}
-
-extension UISegmentedControl {
     
-    @objc var changeDefaultFont: Any {
-        get {
-            fatalError()
-        }
+    @objc var aalkChangeFont: AALK_Configuration {
+        get { fatalError() }
         set {
-            guard let config = newValue as? AALK_Configuration, config.updateSegmentedControl else { return }
-
-            let attrs = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: config.sizeSegmentedControl).languageFont]
-            setTitleTextAttributes(attrs, for: .normal)
-            setTitleTextAttributes(attrs, for: .selected)
+            let normalFont = titleTextAttributes(for: .normal)?[.font] as? UIFont
+            let selectedFont = titleTextAttributes(for: .selected)?[.font] as? UIFont
+            let _normalFont = newValue.setLanguageFont(normalFont ?? UIFont.systemFont(ofSize: newValue.sizeSegmentedControl))
+            let _selectedFont = newValue.setLanguageFont(selectedFont ?? UIFont.systemFont(ofSize: newValue.sizeSegmentedControl))
+            setTitleTextAttributes([NSAttributedString.Key.font: _normalFont as Any], for: .normal)
+            setTitleTextAttributes([NSAttributedString.Key.font: _selectedFont as Any], for: .selected)
         }
     }
 }

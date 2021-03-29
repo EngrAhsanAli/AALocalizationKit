@@ -5,6 +5,24 @@
 //  Created by Engr. Ahsan Ali on 22/10/2019.
 //  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 // MARK:- Locale for App
 public extension Locale {
@@ -12,28 +30,12 @@ public extension Locale {
     /// Returns the language display name
     /// - Parameter identifier: language identifier
     static func aalk_languageName(from identifier: String) -> String {
-        let locale = NSLocale(localeIdentifier: identifier)
-        return locale.displayName(forKey: NSLocale.Key.identifier , value: identifier)!
+        NSLocale(localeIdentifier: identifier).displayName(forKey: .identifier , value: identifier) ?? identifier
     }
     
-    
-    /// Configs localization with given font names and weights
-    /// - Parameter fonts: array of fonts with names
-    static func aalk_configure(_ fonts: [String : [UIFont.Weight : String]]) {
-        var aalkFonts = [AALanguage : [UIFont.Weight : String]]()
-        for (key, value) in fonts {
-            if let lang = AALanguage(rawValue: key) {
-                aalkFonts[lang] = value
-            }
-            else {
-                fatalError("AALocalization:- The names of the fonts are not in correct format. Font family and weight must seperate from -")
-            }
-        }
-        
-        if let fontFamily = aalkFonts.first!.key.rawValue.components(separatedBy: "-").first {
-            AALK.configuration.defaultFont = fontFamily
-        }
-        AALK.configuration.languageFont = aalkFonts
-        
+    func aalk_setCurrentLanguage() {
+        guard let lang = AALanguage(rawValue: identifier) else { return }
+        AALK.currentLanguage = lang
     }
+    
 }

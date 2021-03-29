@@ -5,6 +5,24 @@
 //  Created by Engr. Ahsan Ali on 22/10/2019.
 //  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 // MARK: - UIFont extension for AALK
 extension UIFont {
@@ -28,34 +46,24 @@ extension UIFont {
         return UIFont(name: name, size: fontDescriptor.pointSize) ?? self
     }
     
-    /// Get the provided language font
-    /// Font files against font weights should be input while application starts
-    /// This will consider the default font with regular font weight if no custom font was provided by the user
-    var languageFont: UIFont {
-        if let languageFont = AALK.configuration.languageFont[AALK.currentLanguage]  {
-            if AALK.configuration.keepSameFont, let fontName = languageFont[.regular] {
-                return font(withName: fontName)
-            }
-            else if let fontName = languageFont[weight] {
-                return font(withName: fontName)
-            }
-        }
-        return font(withName: AALK.configuration.defaultFont)
-    }
-    
     
 }
 
 
 public extension UIFont {
     
-    class func aalkFontName(_ weight: UIFont.Weight) -> String {
-        (AALK.languageFonts[AALK.currentLanguage]?[weight])!
+    convenience init(aalk weight: UIFont.Weight, pointSize: CGFloat) {
+        let fontName = UIFont.aalk_fontName(weight)
+        self.init(name: fontName, size: pointSize)!
+    }
+    
+    class func aalk_fontName(_ weight: UIFont.Weight) -> String {
+        (AALK.languageFonts[AALK.currentLanguage]?[weight]) ?? "Helvetica"
     }
     
     func aalk_changeFont(_ weight: UIFont.Weight) -> UIFont {
-        let fontName = UIFont.aalkFontName(weight)
-        return UIFont(name: fontName, size: self.pointSize) ?? self
+        let fontName = UIFont.aalk_fontName(weight)
+        return UIFont(name: fontName, size: pointSize) ?? self
     }
     
 }

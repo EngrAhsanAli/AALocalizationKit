@@ -18,7 +18,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setLanguagePicker()
-        localizedViewCallback()
     }
     
     /// Set the language picker
@@ -34,40 +33,16 @@ class ViewController: UIViewController {
             langPicker.text = Locale.aalk_languageName(from: AALK.currentLanguage.rawValue)
         }
         
-        
         let dynamicLabel = UILabel(frame: CGRect.init(x: 0,
                                                       y: UIScreen.main.bounds.size.height - 200,
                                                       width:  UIScreen.main.bounds.size.width,
                                                       height: 100))
         dynamicLabel.text = "A dynamic label added programatically"
-        dynamicLabel.font = .boldSystemFont(ofSize: 18)
         dynamicLabel.numberOfLines = 0
         dynamicLabel.textAlignment = .center
         dynamicLabel.textColor = .blue
         self.view.addSubview(dynamicLabel)
         
-//        view.aa_updateLocalization(recursive: true)
-        
-        
-    }
-    
-    /// set localizedViewCallback
-    func localizedViewCallback() {
-        AALK.localizedView = {
-            
-            if let v = ($0 as? UIButton), let font = v.titleLabel?.font {
-                print("Applied Font (UIButton): ", font)
-            }
-            
-            if let v = ($0 as? UILabel), let font =  v.font {
-                print("Applied Font (UILabel): ", font)
-            }
-            
-            if let v = ($0 as? UITextField), let font =  v.font {
-                print("Applied Font (UITextField): ", font)
-            }
-            
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -85,11 +60,8 @@ class ViewController: UIViewController {
         // Reload this view
         reloadViewFromNib()
         
-        
-        // AALK.currentLanguage = lang
-        AALK.setLanguage(language: lang, viewController: { title -> UIViewController in
-            
-            return self.storyboard!.instantiateInitialViewController()!
+        AALK.setLanguage(language: lang, viewController: { _ in 
+            self.storyboard!.instantiateInitialViewController()!
         }) { view in
           view.transform = CGAffineTransform(scaleX: 2, y: 2)
           view.alpha = 0

@@ -7,47 +7,66 @@
 //
 
 // MARK:- AALK_Configuration
-public struct AALK_Configuration {
+@objc public class AALK_Configuration: NSObject {
+    public override init() {}
+        
+    @objc public class UpdateOptions: NSObject {
+        public var font: Bool = true
+        public var alignment: Bool = true
+        public var localize: Bool = true
+        public var container: [UIAppearanceContainer.Type] = []
+    }
+    
+    public enum UI_Elems {
+        case label(UpdateOptions),
+             textField(UpdateOptions),
+             textView(UpdateOptions),
+             button(UpdateOptions),
+             segmentedControl(UpdateOptions)
+    }
     
     /// Default font family for default language of the application
     public var defaultFont: String = "GillSans"
     
     /// Fonts those should not override
-    public var exceptions: [String] = []
-
-    /// Flag to keep same font family if no respective font weight found in the application
-    public var keepSameFont: Bool = true
+    public var exceptions = Set<String>()
     
     /// Collection of languages and their respective font weights and font families
     public var languageFont: [AALanguage: [UIFont.Weight: String]] = [:]
     
     /// UISegmentedControl size
-    public var sizeSegmentedControl: CGFloat = 17
+    public var sizeSegmentedControl: CGFloat = 25
     
-    /// UISegmentedControl flag to update when language changes
-    public var updateSegmentedControl: Bool = true
+    public var localizationBundle: Bundle = .main
     
-    /// UITextField flag to update when language changes
-    public var updateTextField: Bool = true
-    
-    /// UILabel flag to update when language changes
-    public var updateLabel: Bool = true
-    
-    /// UITextView flag to update when language changes
-    public var updateTextView: Bool = true
-    
-    /// UIButton flag to update when language changes
-    public var updateButton: Bool = true
-
+    public var appearanceElements: [UI_Elems] = [.label(UpdateOptions()),
+                                                 .button(UpdateOptions()),
+                                                 .textField(UpdateOptions()),
+                                                 .textView(UpdateOptions())]
+        
 }
 
 extension AALK_Configuration {
     
-    func shouldOverrideFont(_ name: String?) -> Bool {
-        guard let name = name else {
-            return true
+    func localizedString(_ key: String?) -> String? {
+        guard let text = key,
+              let bundlePath = localizationBundle.path(forResource: AALK.currentLanguageString, ofType: "lproj") else { return nil }
+        let bundle = Bundle(path: bundlePath)!
+        return bundle.localizedString(forKey: text, value: nil, table: nil)
+    }
+    
+    /// Get the provided language font
+    /// Font files against font weights should be input while application starts
+    /// This will consider the default font with regular font weight if no custom font was provided by the user
+    func setLanguageFont(_ font: UIFont?) -> UIFont? {
+        guard let _font = font else { return nil }
+        if let fontName = languageFont[AALK.currentLanguage]?[_font.weight] {
+            if exceptions.contains(_font.fontName) {
+                return _font
+            }
+            return _font.font(withName: fontName)
         }
-        return !exceptions.contains(name)
+        return _font.font(withName: defaultFont)
     }
     
 }

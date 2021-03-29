@@ -5,6 +5,24 @@
 //  Created by Engr. Ahsan Ali on 22/10/2019.
 //  Copyright (c) 2017 AA-Creations. All rights reserved.
 //
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 import UIKit
 
@@ -13,9 +31,6 @@ public class AALocalizationKit {
     
     /// Singleton a.k.a AALK
     public static let shared: AALocalizationKit = AALocalizationKit()
-    
-    /// Callback for localized views when langauge changes
-    public var localizedView: ((UIView) -> ())?
     
     /// AALK configurations Singleton
     public var configuration = AALK_Configuration()
@@ -120,23 +135,21 @@ public class AALocalizationKit {
                             animation: ((UIView) -> Void)? = nil) {
         
         AALK.currentLanguage = language
-        guard let viewController = viewController else {
-            return
-        }
-
+        guard let viewController = viewController else { return }
+        
         var windowsToChange: [(UIWindow?, String?)]?
         if let windows = windows {
-          windowsToChange = windows
+            windowsToChange = windows
         } else {
-          if #available(iOS 13.0, *) {
-            windowsToChange = UIApplication.shared.connectedScenes
-              .compactMap({$0 as? UIWindowScene})
-              .map({ ($0.windows.first, $0.title) })
-          } else {
-            windowsToChange = [(UIApplication.shared.keyWindow, nil)]
-          }
+            if #available(iOS 13.0, *) {
+                windowsToChange = UIApplication.shared.connectedScenes
+                    .compactMap({$0 as? UIWindowScene})
+                    .map({ ($0.windows.first, $0.title) })
+            } else {
+                windowsToChange = [(UIApplication.shared.keyWindow, nil)]
+            }
         }
-      
+        
         windowsToChange?.forEach({ windowAndTitle in
     
             let (window, title) = windowAndTitle
@@ -150,46 +163,26 @@ public class AALocalizationKit {
             window?.rootViewController = rootViewController
 
             UIView.animate(withDuration: 0.5, animations: {
-              animation?(snapshot)
+                animation?(snapshot)
+                self.setApperance()
             }) { _ in
-              snapshot.removeFromSuperview()
+                snapshot.removeFromSuperview()
             }
         
       })
 
     }
     
-    /// Set auto localization of strings with method swizzling
-    /// - Parameter enable: should enable flag
-    public func setAutoLocalization(enable: Bool) {
-        if enable {
-            Bundle.startLocalization()
-        }
-        else {
-            Bundle.stopLocalization()
-        }
-    }
-    
-    /// Set auto font chage of strings with method swizzling
-    /// - Parameter enable: should enable flag
-    public func setAutoFontChange(enable: Bool) {
-        if enable {
-            UIView.startFontChange()
-        }
-        else {
-            UIView.stopFontChange()
+    public func setApperance() {
+        configuration.appearanceElements.forEach {
+            switch $0 {
+            case .label(let m):             setLabelApperance(of: m)
+            case .textField(let m):         setTextFieldApperance(of: m)
+            case .textView(let m):          setTextViewApperance(of: m)
+            case .button(let m):            setButtonApperance(of: m)
+            case .segmentedControl(let m):  setSegmentedControlApperance(of: m)
+            }
         }
     }
-    
-    public func enableChange(enable: Bool) {
-        setAutoFontChange(enable: enable)
-        setAutoLocalization(enable: enable)
-    }
-    
-    
-    
     
 }
-
-
-

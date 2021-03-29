@@ -17,15 +17,11 @@ enum DefaultKeys: String {
     case unlocalizedKey = "<unlocalized>"
     
     /// Get the string value from user defaults for given key
-    var get: String? {
-        return UserDefaults.standard.string(forKey: rawValue)
-    }
+    var get: String? { UserDefaults.standard.string(forKey: rawValue) }
     
     /// Set the string value from user defaults for given key
     /// - Parameter value: New Value
-    func set(value: AALanguage) {
-        UserDefaults.standard.set(value.rawValue, forKey: rawValue)
-    }
+    func set(value: AALanguage) { UserDefaults.standard.set(value.rawValue, forKey: rawValue) }
     
 }
 
@@ -48,9 +44,6 @@ public enum AALanguage: String {
     case ar,en,nl,ja,ko,vi,ru,sv,fr,es,pt,it,de,da,fi,nb,tr,el,id,
            ms,th,hi,hu,pl,cs,sk,uk,hr,ca,ro,he,ur,fa,ku,arc,sl,ml
     
-    
     /// Check the characters direction for current language
-    var isRightToLeft: Bool {
-        return Locale.characterDirection(forLanguage: rawValue) == .rightToLeft
-    }
+    var isRightToLeft: Bool { Locale.characterDirection(forLanguage: rawValue) == .rightToLeft }
 }

@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  AALocalizationKit
+
+  Created by Muhammad Ahsan Ali on 2021/03/22.
+  Copyright © 2021 CocoaPods. All rights reserved.
+*/
+
+"Hello" = "تحية للجميع";
+
+"Hi" = "مرحبا";
+
+"Write you name here" = "اكتب اسمك هنا";
+
+"What's your name?" = "ما اسمك؟";
+
+"Greetings to you" = "تحياتي لك";
+
+"Select Language" = "اختار اللغة";

@@ -2,25 +2,41 @@
 //  AALK+String.swift
 //  AALocalizationKit
 //
-//  Created by Engr. Ahsan Ali on 22/10/2019.
-//  Copyright (c) 2017 AA-Creations. All rights reserved.
+//  Created by Muhammad Ahsan Ali on 2021/03/28.
 //
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
-// MARK: - String extension for AALK
-extension String {
+import Foundation
+
+public extension String {
     
-    /// Return the localized string with empty comment
-    @discardableResult
-    mutating func localize() -> String {
-        let localized = NSLocalizedString(self, comment: "")
-        
-        if localized == "" {
-            return self
-        }
-        
-        self = localized
-        return localized
-       
+    mutating func aalk_prepend(_ string: String, spacing: Int = 1) {
+        let spacing = String(repeating: " ", count: spacing)
+        if AALK.isRightToLeft { append(spacing + string + spacing) }
+        else { insert(contentsOf: spacing + string  + spacing, at: string.startIndex) }
+    }
+    
+    mutating func aalk_append(_ string: String, spacing: Int = 1) {
+        let spacing = String(repeating: " ", count: spacing)
+        if !AALK.isRightToLeft { append(spacing + string + spacing) }
+        else { insert(contentsOf: spacing + string + spacing, at: string.startIndex) }
     }
     
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		413C62502607D5E0006F2113 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 413C62522607D5E0006F2113 /* Localizable.strings */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,6 +32,12 @@
 		1179C07E694F503103CAE559 /* Pods-AALocalizationKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AALocalizationKit_Example.debug.xcconfig"; path = "Target Support Files/Pods-AALocalizationKit_Example/Pods-AALocalizationKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		323A797AC12F8B0ACDE279D0 /* Pods-AALocalizationKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AALocalizationKit_Example.release.xcconfig"; path = "Target Support Files/Pods-AALocalizationKit_Example/Pods-AALocalizationKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3DBF15E3C87A818B1C0D9C06 /* Pods_AALocalizationKit_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AALocalizationKit_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		413C62512607D5E0006F2113 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		413C62542607D5E9006F2113 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		413C62552607D5EA006F2113 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		413C62562607D5EB006F2113 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		413C62572607D5ED006F2113 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		413C62582607D5EE006F2113 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* AALocalizationKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AALocalizationKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +124,7 @@
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				8F6CC283237FEEC7005184E4 /* Extensions.swift */,
+				413C62522607D5E0006F2113 /* Localizable.strings */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -314,6 +322,7 @@
 				8FF9504E239D608E00856085 /* LemonadeStand.ttf in Resources */,
 				8FF95079239D64F900856085 /* Jomhuria.ttf in Resources */,
 				8FF9504C239D608E00856085 /* MuchaFrenchCapitals.ttf in Resources */,
+				413C62502607D5E0006F2113 /* Localizable.strings in Resources */,
 				8FF95076239D64F900856085 /* NotoSerifJP-Regular.otf in Resources */,
 				8FF9504D239D608E00856085 /* Chibrush.ttf in Resources */,
 				8FF95073239D64F900856085 /* NotoSerifJP-Medium.otf in Resources */,
@@ -388,6 +397,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		413C62522607D5E0006F2113 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				413C62512607D5E0006F2113 /* English */,
+				413C62542607D5E9006F2113 /* ar */,
+				413C62552607D5EA006F2113 /* zh-Hans */,
+				413C62562607D5EB006F2113 /* fr */,
+				413C62572607D5ED006F2113 /* de */,
+				413C62582607D5EE006F2113 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		607FACD91AFB9204008FA782 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
