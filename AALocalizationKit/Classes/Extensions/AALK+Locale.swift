@@ -38,4 +38,8 @@ public extension Locale {
         AALK.currentLanguage = lang
     }
     
+    static var aalk_isRightToLeft: Bool { AALK.isRightToLeft }
+    
+    static var aalk_language: String { AALK.currentLanguage.rawValue }
+
 }

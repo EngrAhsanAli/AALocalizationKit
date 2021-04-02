@@ -37,33 +37,17 @@ extension UIFont {
     
     /// Gets the traits from font descriptor property of UIFont
     var traits: [UIFontDescriptor.TraitKey: Any] {
-        return fontDescriptor.object(forKey: .traits) as? [UIFontDescriptor.TraitKey: Any]
+        fontDescriptor.object(forKey: .traits) as? [UIFontDescriptor.TraitKey: Any]
             ?? [:]
     }
     
     // Setting it for better time complexity
     func font(withName name: String) -> UIFont {
-        return UIFont(name: name, size: fontDescriptor.pointSize) ?? self
+        UIFont(name: name, size: fontDescriptor.pointSize) ?? self
     }
     
-    
-}
-
-
-public extension UIFont {
-    
-    convenience init(aalk weight: UIFont.Weight, pointSize: CGFloat) {
-        let fontName = UIFont.aalk_fontName(weight)
+    public convenience init(aalk weight: UIFont.Weight, pointSize: CGFloat) {
+        let fontName = (AALK.languageFonts[AALK.currentLanguage]?[weight]) ?? "Helvetica"
         self.init(name: fontName, size: pointSize)!
     }
-    
-    class func aalk_fontName(_ weight: UIFont.Weight) -> String {
-        (AALK.languageFonts[AALK.currentLanguage]?[weight]) ?? "Helvetica"
-    }
-    
-    func aalk_changeFont(_ weight: UIFont.Weight) -> UIFont {
-        let fontName = UIFont.aalk_fontName(weight)
-        return UIFont(name: fontName, size: pointSize) ?? self
-    }
-    
 }

@@ -28,18 +28,14 @@
 extension NSTextAlignment {
     
     /// Set character direction for languages supporting left and right directions
-    mutating func setAllignment() {
-        guard self != .natural else { return }
-        self = AALK.isRightToLeft ? .right : .left
-    }
-    
-    /// Set character direction for languages supporting left and right directions
     public mutating func aalk_setAllignment() {
+        guard self == .right || self == .left else { return }
         self = AALK.isRightToLeft ? .right : .left
     }
     
     /// Set character direction for languages supporting left and right directions
     public mutating func aalk_setInverseAllignment() {
+        guard self == .right || self == .left else { return }
         self = !AALK.isRightToLeft ? .right : .left
     }
 }

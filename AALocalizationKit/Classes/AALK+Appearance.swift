@@ -34,15 +34,10 @@ extension AALocalizationKit {
             UILabel.appearance(whenContainedInInstancesOf: container) :
             UILabel.appearance()
         
-        if appearance.alignment {
-            instance.textAlignment.setAllignment()
-        }
-        if appearance.font {
-            instance.aalkChangeFont = config
-        }
-        if appearance.localize {
-            instance.aalkChangeText = config
-        }
+        if appearance.alignment { instance.aalkChangeAllignment = config }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.localize { instance.aalkChangeText = config }
+        
     }
     
     func setTextFieldApperance(of appearance: AALK_Configuration.UpdateOptions) {
@@ -52,15 +47,10 @@ extension AALocalizationKit {
             UITextField.appearance(whenContainedInInstancesOf: container) :
             UITextField.appearance()
         
-        if appearance.alignment {
-            instance.textAlignment.setAllignment()
-        }
-        if appearance.font {
-            instance.aalkChangeFont = config
-        }
-        if appearance.localize {
-            instance.aalkChangeText = config
-        }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.localize { instance.aalkChangeText = config }
+        
     }
     
     func setButtonApperance(of appearance: AALK_Configuration.UpdateOptions) {
@@ -70,15 +60,10 @@ extension AALocalizationKit {
             UIButton.appearance(whenContainedInInstancesOf: container) :
             UIButton.appearance()
         
-        if appearance.alignment {
-            instance.titleLabel?.textAlignment.setAllignment()
-        }
-        if appearance.font {
-            instance.aalkChangeFont = config
-        }
-        if appearance.localize {
-            instance.aalkChangeText = config
-        }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.localize { instance.aalkChangeText = config }
+        
     }
     
     func setTextViewApperance(of appearance: AALK_Configuration.UpdateOptions) {
@@ -88,15 +73,10 @@ extension AALocalizationKit {
             UITextView.appearance(whenContainedInInstancesOf: container) :
             UITextView.appearance()
         
-        if appearance.alignment {
-            instance.textAlignment.setAllignment()
-        }
-        if appearance.font {
-            instance.aalkChangeFont = config
-        }
-        if appearance.localize {
-            instance.aalkChangeText = config
-        }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.localize { instance.aalkChangeText = config }
+        
     }
     
     func setSegmentedControlApperance(of appearance: AALK_Configuration.UpdateOptions) {
@@ -106,20 +86,20 @@ extension AALocalizationKit {
             UISegmentedControl.appearance(whenContainedInInstancesOf: container) :
             UISegmentedControl.appearance()
         
-        if appearance.alignment {
-            // TODO:- set text allignments
-        }
-        if appearance.font {
-            instance.aalkChangeFont = config
-        }
-        if appearance.localize {
-            instance.aalkChangeText = config
-        }
+//        if appearance.alignment { } // TODO
+        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.localize { instance.aalkChangeText = config }
+        
     }
     
 }
 
 fileprivate extension UILabel {
+    
+    @objc var aalkChangeAllignment: AALK_Configuration {
+        get { fatalError() }
+        set { textAlignment.aalk_setAllignment() }
+    }
     
     @objc var aalkChangeText: AALK_Configuration {
         get { fatalError() }
@@ -137,6 +117,11 @@ fileprivate extension UILabel {
 
 fileprivate extension UITextField {
     
+    @objc var aalkChangeAllignment: AALK_Configuration {
+        get { fatalError() }
+        set { textAlignment.aalk_setAllignment() }
+    }
+    
     @objc var aalkChangeText: AALK_Configuration {
         get { fatalError() }
         set {
@@ -152,6 +137,11 @@ fileprivate extension UITextField {
 }
 
 fileprivate extension UITextView {
+    
+    @objc var aalkChangeAllignment: AALK_Configuration {
+        get { fatalError() }
+        set { textAlignment.aalk_setAllignment() }
+    }
     
     @objc var aalkChangeText: AALK_Configuration {
         get { fatalError() }
@@ -169,6 +159,11 @@ fileprivate extension UITextView {
 
 fileprivate extension UIButton {
     
+    @objc var aalkChangeAllignment: AALK_Configuration {
+        get { fatalError() }
+        set { titleLabel?.textAlignment.aalk_setAllignment() }
+    }
+    
     @objc var aalkChangeText: AALK_Configuration {
         get { fatalError() }
         set {
@@ -185,11 +180,14 @@ fileprivate extension UIButton {
 
 fileprivate extension UISegmentedControl {
     
+    @objc var aalkChangeAllignment: AALK_Configuration {
+        get { fatalError() }
+        set { } // TODO
+    }
+    
     @objc var aalkChangeText: AALK_Configuration {
         get { fatalError() }
-        set {
-            // TODO:- localization
-        }
+        set { } // TODO
     }
     
     @objc var aalkChangeFont: AALK_Configuration {
