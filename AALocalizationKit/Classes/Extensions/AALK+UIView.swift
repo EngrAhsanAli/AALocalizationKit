@@ -53,3 +53,12 @@ public extension UILabel {
 
 
 
+extension UISearchBar {
+    
+    /// Returns the`UITextField` that is placed inside the text field.
+    var aa_textField: UITextField {
+        if #available(iOS 13, *) { return searchTextField }
+        else { return value(forKey: "_searchField") as! UITextField }
+    }
+    
+}

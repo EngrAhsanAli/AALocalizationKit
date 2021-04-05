@@ -1,5 +1,5 @@
 PODS:
-  - AALocalizationKit (1.2)
+  - AALocalizationKit (1.5.1)
   - AAPickerView (1.0)
 
 DEPENDENCIES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AALocalizationKit: 08d675b7c89362efe6e41009685eab80ac89d0f4
+  AALocalizationKit: 07233cf6b9f727ad5f5590788aa261992ca15df8
   AAPickerView: 32334007f7bb541db2b2f8663806f0a6636fdfeb
 
 PODFILE CHECKSUM: 0cb0b083a2cd5474705a0b0eb128b310065026fa
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1

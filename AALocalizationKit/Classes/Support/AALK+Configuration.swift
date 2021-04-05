@@ -19,6 +19,7 @@
     
     public enum UI_Elems {
         case label(UpdateOptions),
+             searchField(UpdateOptions),
              textField(UpdateOptions),
              textView(UpdateOptions),
              button(UpdateOptions),
@@ -41,6 +42,7 @@
     
     public var appearanceElements: [UI_Elems] = [.label(UpdateOptions()),
                                                  .button(UpdateOptions()),
+                                                 .searchField(UpdateOptions()),
                                                  .textField(UpdateOptions()),
                                                  .textView(UpdateOptions())]
         

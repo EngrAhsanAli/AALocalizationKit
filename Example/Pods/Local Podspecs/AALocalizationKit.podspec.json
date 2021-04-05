@@ -1,6 +1,6 @@
 {
   "name": "AALocalizationKit",
-  "version": "1.2",
+  "version": "1.5.1",
   "summary": "AALocalizationKit is a great localization manager that is written in pure swift.",
   "description": "AALocalizationKit is really helpful to maintain multiple languages in the application with their custom language fonts and an ability to change the language within your application! With this, you can easily configured framework to configure multiple languages in the iOS application.",
   "homepage": "https://github.com/EngrAhsanAli/AALocalizationKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/EngrAhsanAli/AALocalizationKit.git",
-    "tag": "1.2"
+    "tag": "1.5.1"
   },
   "platforms": {
     "ios": "9.0"

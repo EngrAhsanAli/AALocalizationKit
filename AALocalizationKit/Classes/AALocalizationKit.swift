@@ -91,12 +91,12 @@ public class AALocalizationKit {
     
     /// Getter for language semantic content attribute either right to left or not
     public var isRightToLeft: Bool {
-        return currentLanguage.isRightToLeft
+        currentLanguage.isRightToLeft
     }
     
     /// Get the current application Locale
     public var appLocale: Locale {
-        return Locale(identifier: currentLanguage.rawValue)
+        Locale(identifier: currentLanguage.rawValue)
     }
     
     /// Get all configured languages in the application's main bundle
@@ -110,7 +110,7 @@ public class AALocalizationKit {
     
     /// Get all configured languages in the application's main bundle
     public var bundleLanguageNames: [String] {
-        return bundleLanguages.compactMap {
+        bundleLanguages.compactMap {
             Locale.aalk_languageName(from: $0)
         }
     }
@@ -118,7 +118,7 @@ public class AALocalizationKit {
     
     /// Get all available languages in the main bundle of the application
     public var languages: [AALanguage] {
-        return bundleLanguages.compactMap {
+        bundleLanguages.compactMap {
             AALanguage(rawValue: $0)
         }
     }
@@ -181,6 +181,8 @@ public class AALocalizationKit {
             case .textView(let m):          setTextViewApperance(of: m)
             case .button(let m):            setButtonApperance(of: m)
             case .segmentedControl(let m):  setSegmentedControlApperance(of: m)
+            case .searchField(let m):       setSearchFieldApperance(of: m)
+                
             }
         }
     }

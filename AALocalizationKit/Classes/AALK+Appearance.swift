@@ -47,7 +47,20 @@ extension AALocalizationKit {
             UITextField.appearance(whenContainedInInstancesOf: container) :
             UITextField.appearance()
         
+        if appearance.alignment { instance.aalkChangeAllignment = config }
         if appearance.font { instance.aalkChangeFont = config }
+        if appearance.localize { instance.aalkChangeText = config }
+        
+    }
+    
+    func setSearchFieldApperance(of appearance: AALK_Configuration.UpdateOptions) {
+        let config = configuration
+        let container = appearance.container
+        let instance = (container.count > 0) ?
+            UISearchBar.appearance(whenContainedInInstancesOf: container) :
+            UISearchBar.appearance()
+        
+        if appearance.alignment { instance.aalkChangeAllignment = config }
         if appearance.font { instance.aalkChangeFont = config }
         if appearance.localize { instance.aalkChangeText = config }
         
@@ -60,7 +73,7 @@ extension AALocalizationKit {
             UIButton.appearance(whenContainedInInstancesOf: container) :
             UIButton.appearance()
         
-        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.alignment { instance.aalkChangeAllignment = config }
         if appearance.font { instance.aalkChangeFont = config }
         if appearance.localize { instance.aalkChangeText = config }
         
@@ -73,7 +86,7 @@ extension AALocalizationKit {
             UITextView.appearance(whenContainedInInstancesOf: container) :
             UITextView.appearance()
         
-        if appearance.font { instance.aalkChangeFont = config }
+        if appearance.alignment { instance.aalkChangeAllignment = config }
         if appearance.font { instance.aalkChangeFont = config }
         if appearance.localize { instance.aalkChangeText = config }
         
@@ -86,7 +99,7 @@ extension AALocalizationKit {
             UISegmentedControl.appearance(whenContainedInInstancesOf: container) :
             UISegmentedControl.appearance()
         
-//        if appearance.alignment { } // TODO
+        // if appearance.alignment { } // TODO
         if appearance.font { instance.aalkChangeFont = config }
         if appearance.localize { instance.aalkChangeText = config }
         
@@ -133,6 +146,27 @@ fileprivate extension UITextField {
     @objc var aalkChangeFont: AALK_Configuration {
         get { fatalError() }
         set { font = newValue.setLanguageFont(font) }
+    }
+}
+
+fileprivate extension UISearchBar {
+    
+    @objc var aalkChangeAllignment: AALK_Configuration {
+        get { fatalError() }
+        set { aa_textField.textAlignment.aalk_setAllignment() }
+    }
+    
+    @objc var aalkChangeText: AALK_Configuration {
+        get { fatalError() }
+        set {
+            if let text = newValue.localizedString(text) { self.text = text }
+            if let placeholder = newValue.localizedString(placeholder) { self.placeholder = placeholder }
+        }
+    }
+    
+    @objc var aalkChangeFont: AALK_Configuration {
+        get { fatalError() }
+        set { aa_textField.font = newValue.setLanguageFont(aa_textField.font) }
     }
 }
 
