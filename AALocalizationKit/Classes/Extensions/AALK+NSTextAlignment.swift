@@ -29,7 +29,7 @@ extension NSTextAlignment {
     
     /// Set character direction for languages supporting left and right directions
     public mutating func aalk_setAllignment() {
-        guard self != .center && self != .justified else { return }
+        guard self != .center && self != .natural && self != .justified else { return }
         self = AALK.isRightToLeft ? .right : .left
     }
     
